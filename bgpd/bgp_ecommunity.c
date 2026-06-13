@@ -449,7 +449,7 @@ bool ecommunity_node_target_match(struct ecommunity *ecom,
 	bool match = false;
 
 	if (!ecom || !ecom->size)
-		return NULL;
+		return false;
 
 	for (i = 0; i < ecom->size; i++) {
 		const uint8_t *pnt;
@@ -598,7 +598,7 @@ static const char *ecommunity_gettoken(const char *str, void *eval_ptr,
 		p++;
 		if (tolower((unsigned char)*p) == 't') {
 			p++;
-			if (*p != '\0' && tolower((int)*p) == '6')
+			if (*p != '\0' && tolower((unsigned char)*p) == '6')
 				*token = ecommunity_token_rt6;
 			else
 				*token = ecommunity_token_rt;
@@ -716,7 +716,7 @@ static const char *ecommunity_gettoken(const char *str, void *eval_ptr,
 			goto error;
 
 		*token = ecommunity_token_val6;
-		while (isdigit((int)*p) || *p == ':' || *p == '.') {
+		while (isdigit((unsigned char)*p) || *p == ':' || *p == '.') {
 			p++;
 		}
 		return p;
@@ -1437,8 +1437,6 @@ static char *_ecommunity_ecom2str(struct ecommunity *ecom, int format, int filte
 						   ~ECOMMUNITY_ENCODE_TRANS_EXP),
 					ECOMMUNITY_ROUTE_TARGET,
 					ECOMMUNITY_FORMAT_DISPLAY);
-				snprintf(encbuf, sizeof(encbuf),
-					 "FS:redirect VRF %s", buf);
 				snprintf(encbuf, sizeof(encbuf),
 					 "FS:redirect VRF %s", buf);
 			} else if (type != ECOMMUNITY_ENCODE_TRANS_EXP)

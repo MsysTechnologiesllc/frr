@@ -1791,13 +1791,13 @@ static int bgp_open_receive(struct peer_connection *connection, bgp_size_t size)
 	uint8_t notify_data_remote_as[2];
 	uint8_t notify_data_remote_as4[4];
 	uint8_t notify_data_remote_id[4];
-	uint16_t *holdtime_ptr;
+	uint8_t notify_data_holdtime[2];
 
 	/* Parse open packet. */
 	version = stream_getc(connection->curr);
 	memcpy(notify_data_remote_as, stream_pnt(connection->curr), 2);
 	remote_as = stream_getw(connection->curr);
-	holdtime_ptr = (uint16_t *)stream_pnt(connection->curr);
+	memcpy(notify_data_holdtime, stream_pnt(connection->curr), 2);
 	holdtime = stream_getw(connection->curr);
 	memcpy(notify_data_remote_id, stream_pnt(connection->curr), 4);
 	remote_id.s_addr = stream_get_ipv4(connection->curr);
@@ -1852,6 +1852,18 @@ static int bgp_open_receive(struct peer_connection *connection, bgp_size_t size)
 			optlen = stream_getw(connection->curr);
 			SET_FLAG(peer->sflags,
 				 PEER_STATUS_EXT_OPT_PARAMS_LENGTH);
+		} else {
+			/* RFC 9072: the extended format is in use only when the
+			 * Non-Ext OP Type octet is 255. A one-octet length of
+			 * 255 with any other type is a regular (non-extended)
+			 * OPEN message carrying exactly 255 octets of Optional
+			 * Parameters, and the octet we just read is the Type
+			 * field of the first Optional Parameter (type 255 is
+			 * reserved and never a bona fide parameter type). Rewind
+			 * so it is parsed as part of the Optional Parameters
+			 * rather than being consumed here.
+			 */
+			stream_rewind_getp(connection->curr, 1);
 		}
 	}
 
@@ -2078,7 +2090,7 @@ static int bgp_open_receive(struct peer_connection *connection, bgp_size_t size)
 	if (holdtime < 3 && holdtime != 0) {
 		bgp_notify_send_with_data(connection, BGP_NOTIFY_OPEN_ERR,
 					  BGP_NOTIFY_OPEN_UNACEP_HOLDTIME,
-					  (uint8_t *)holdtime_ptr, 2);
+					  notify_data_holdtime, 2);
 		return BGP_Stop;
 	}
 
@@ -2088,7 +2100,7 @@ static int bgp_open_receive(struct peer_connection *connection, bgp_size_t size)
 	    && peer->bgp->default_min_holdtime != 0) {
 		bgp_notify_send_with_data(connection, BGP_NOTIFY_OPEN_ERR,
 					  BGP_NOTIFY_OPEN_UNACEP_HOLDTIME,
-					  (uint8_t *)holdtime_ptr, 2);
+					  notify_data_holdtime, 2);
 		return BGP_Stop;
 	}
 
@@ -2483,17 +2495,6 @@ static int bgp_update_receive(struct peer_connection *connection, bgp_size_t siz
 		nlris[NLRI_UPDATE].nlri = stream_pnt(s);
 		nlris[NLRI_UPDATE].length = update_len;
 		stream_forward_getp(s, update_len);
-
-		if (CHECK_FLAG(attr.flag, ATTR_FLAG_BIT(BGP_ATTR_MP_REACH_NLRI))) {
-			/*
-			 * We skipped nexthop attribute validation earlier so
-			 * validate the nexthop now.
-			 */
-			if (bgp_attr_nexthop_valid(peer, &attr) < 0) {
-				bgp_attr_unintern_sub(&attr);
-				return BGP_Stop;
-			}
-		}
 	}
 
 	if (BGP_DEBUG(update, UPDATE_IN) && BGP_DEBUG(update, UPDATE_DETAIL))
@@ -2563,8 +2564,8 @@ static int bgp_update_receive(struct peer_connection *connection, bgp_size_t siz
 		if (!attribute_len) {
 			afi = AFI_IP;
 			safi = SAFI_UNICAST;
-		} else if (attr.flag & ATTR_FLAG_BIT(BGP_ATTR_MP_UNREACH_NLRI)
-			   && nlris[NLRI_MP_WITHDRAW].length == 0) {
+		} else if (bgp_attr_exists(&attr, BGP_ATTR_MP_UNREACH_NLRI) &&
+			   nlris[NLRI_MP_WITHDRAW].length == 0) {
 			afi = nlris[NLRI_MP_WITHDRAW].afi;
 			safi = nlris[NLRI_MP_WITHDRAW].safi;
 		}
@@ -3853,6 +3854,7 @@ static int bgp_capability_msg_parse(struct peer_connection *connection, uint8_t 
 		case CAPABILITY_CODE_ROLE:
 		case CAPABILITY_CODE_SOFT_VERSION:
 		case CAPABILITY_CODE_PATHS_LIMIT:
+		case CAPABILITY_CODE_LLGR:
 			if (hdr->length < cap_minsizes[hdr->code]) {
 				zlog_info("%pBP: %s Capability length error: got %u, expected at least %u",
 					  peer, capability, hdr->length,
