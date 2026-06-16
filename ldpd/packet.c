@@ -606,9 +606,23 @@ static void session_write(struct event *event)
 	struct tcp_conn *tcp = EVENT_ARG(event);
 	struct nbr	*nbr = tcp->nbr;
 
-	if (msgbuf_write(&tcp->wbuf.wbuf) <= 0)
+	if (msgbuf_write(&tcp->wbuf.wbuf) <= 0) {
 		if (errno != EAGAIN && nbr)
 			nbr_fsm(nbr, NBR_EVT_CLOSE_SESSION);
+		/*
+		 * If this is a detached connection (no neighbor) and the write
+		 * failed with a non-transient error (e.g. EPIPE on a broken
+		 * pipe), close the socket immediately.  Without this check the
+		 * write-buffer still has data queued (msgbuf_write does NOT
+		 * drain on error), so the "queued == 0" guard below is never
+		 * reached and evbuf_event_add() keeps re-arming the write event
+		 * on a permanently broken socket, causing a 100% CPU spin.
+		 */
+		if (nbr == NULL && errno != EAGAIN) {
+			tcp_close(tcp);
+			return;
+		}
+	}
 
 	if (nbr == NULL && !tcp->wbuf.wbuf.queued) {
 		/*
