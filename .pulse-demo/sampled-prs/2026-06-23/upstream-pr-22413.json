@@ -1,0 +1,44 @@
+{
+  "author": {
+    "id": "U_kgDOEPYH2Q",
+    "is_bot": false,
+    "login": "Evelyn0828",
+    "name": "Evelyn"
+  },
+  "baseRefName": "master",
+  "body": "When an OSPF NSSA ABR has translated a Type-7 LSA into a Type-5 and then stops being an ABR (e.g. loses its backbone connection), `ospf_abr_nssa_task()` returned early at the `!IS_OSPF_ABR(ospf)` check, skipping the translated-LSA cleanup. The old self-originated translated Type-5 LSA was never unapproved or flushed, so it lingered in the global LSDB and downstream backbone routers kept the stale Type-5 LSA and the corresponding route.\n\nWhen the router is no longer an ABR, unapprove and remove the previously translated Type-5 LSAs (`ospf_abr_unapprove_translates()` + `ospf_abr_remove_unapproved_translates()`, which only touch `OSPF_LSA_LOCAL_XLT` LSAs) so they are flushed throughout the AS.\n\nCloses #21949",
+  "createdAt": "2026-06-18T08:39:55Z",
+  "files": [
+    {
+      "additions": 9,
+      "changeType": "MODIFIED",
+      "deletions": 4,
+      "path": "ospfd/ospf_abr.c"
+    }
+  ],
+  "headRefName": "fix/ospf-nssa-translator-stale-lsa",
+  "labels": [
+    {
+      "color": "086aaf",
+      "description": "",
+      "id": "MDU6TGFiZWwxMjE2MjkzNzQ5",
+      "name": "ospf"
+    },
+    {
+      "color": "ededed",
+      "description": "",
+      "id": "LA_kwDOBJDQj874kyPA",
+      "name": "master"
+    },
+    {
+      "color": "ededed",
+      "description": "",
+      "id": "LA_kwDOBJDQj88AAAABIRkdfw",
+      "name": "size/S"
+    }
+  ],
+  "number": 22413,
+  "title": "ospfd: flush translated Type-5 LSAs when no longer an NSSA translator",
+  "updatedAt": "2026-06-23T08:43:08Z",
+  "url": "https://github.com/FRRouting/frr/pull/22413"
+}
