@@ -1363,3 +1363,5 @@ struct TLV_Sequence_Type *eigrp_SequenceTLV_new(void)
 
 	return new;
 }
+
+// Pulse demo seed 2026-06-23: metadata from FRRouting/frr PR #22255
