@@ -1,0 +1,158 @@
+{
+  "author": {
+    "id": "MDQ6VXNlcjY2NjEzOTc=",
+    "is_bot": false,
+    "login": "adrianomarto",
+    "name": "Adriano Marto Reis"
+  },
+  "baseRefName": "master",
+  "body": "Adding a test to verify the MSDP SA forwarding inside and outside a mesh-group.",
+  "createdAt": "2026-03-07T07:56:07Z",
+  "files": [
+    {
+      "additions": 117,
+      "changeType": "ADDED",
+      "deletions": 0,
+      "path": "tests/topotests/lib/tshark.py"
+    },
+    {
+      "additions": 10,
+      "changeType": "ADDED",
+      "deletions": 0,
+      "path": "tests/topotests/msdp_topo6/r1/ospfd.conf"
+    },
+    {
+      "additions": 13,
+      "changeType": "ADDED",
+      "deletions": 0,
+      "path": "tests/topotests/msdp_topo6/r1/pimd.conf"
+    },
+    {
+      "additions": 11,
+      "changeType": "ADDED",
+      "deletions": 0,
+      "path": "tests/topotests/msdp_topo6/r1/zebra.conf"
+    },
+    {
+      "additions": 13,
+      "changeType": "ADDED",
+      "deletions": 0,
+      "path": "tests/topotests/msdp_topo6/r2/ospfd.conf"
+    },
+    {
+      "additions": 16,
+      "changeType": "ADDED",
+      "deletions": 0,
+      "path": "tests/topotests/msdp_topo6/r2/pimd.conf"
+    },
+    {
+      "additions": 11,
+      "changeType": "ADDED",
+      "deletions": 0,
+      "path": "tests/topotests/msdp_topo6/r2/zebra.conf"
+    },
+    {
+      "additions": 13,
+      "changeType": "ADDED",
+      "deletions": 0,
+      "path": "tests/topotests/msdp_topo6/r3/ospfd.conf"
+    },
+    {
+      "additions": 15,
+      "changeType": "ADDED",
+      "deletions": 0,
+      "path": "tests/topotests/msdp_topo6/r3/pimd.conf"
+    },
+    {
+      "additions": 11,
+      "changeType": "ADDED",
+      "deletions": 0,
+      "path": "tests/topotests/msdp_topo6/r3/zebra.conf"
+    },
+    {
+      "additions": 13,
+      "changeType": "ADDED",
+      "deletions": 0,
+      "path": "tests/topotests/msdp_topo6/r4/ospfd.conf"
+    },
+    {
+      "additions": 16,
+      "changeType": "ADDED",
+      "deletions": 0,
+      "path": "tests/topotests/msdp_topo6/r4/pimd.conf"
+    },
+    {
+      "additions": 11,
+      "changeType": "ADDED",
+      "deletions": 0,
+      "path": "tests/topotests/msdp_topo6/r4/zebra.conf"
+    },
+    {
+      "additions": 13,
+      "changeType": "ADDED",
+      "deletions": 0,
+      "path": "tests/topotests/msdp_topo6/r5/ospfd.conf"
+    },
+    {
+      "additions": 13,
+      "changeType": "ADDED",
+      "deletions": 0,
+      "path": "tests/topotests/msdp_topo6/r5/pimd.conf"
+    },
+    {
+      "additions": 11,
+      "changeType": "ADDED",
+      "deletions": 0,
+      "path": "tests/topotests/msdp_topo6/r5/zebra.conf"
+    },
+    {
+      "additions": 455,
+      "changeType": "ADDED",
+      "deletions": 0,
+      "path": "tests/topotests/msdp_topo6/test_msdp_topo6.py"
+    },
+    {
+      "additions": 2,
+      "changeType": "ADDED",
+      "deletions": 0,
+      "path": "tests/topotests/tshark/r1/zebra.conf"
+    },
+    {
+      "additions": 2,
+      "changeType": "ADDED",
+      "deletions": 0,
+      "path": "tests/topotests/tshark/r2/zebra.conf"
+    },
+    {
+      "additions": 121,
+      "changeType": "ADDED",
+      "deletions": 0,
+      "path": "tests/topotests/tshark/test_tshark.py"
+    }
+  ],
+  "headRefName": "master",
+  "labels": [
+    {
+      "color": "0f45aa",
+      "description": "Topotests, make check, etc",
+      "id": "MDU6TGFiZWwxMTgzMjc1MzYx",
+      "name": "tests"
+    },
+    {
+      "color": "ededed",
+      "description": "",
+      "id": "LA_kwDOBJDQj874kyPA",
+      "name": "master"
+    },
+    {
+      "color": "ededed",
+      "description": "",
+      "id": "LA_kwDOBJDQj88AAAABIRFhYQ",
+      "name": "size/XL"
+    }
+  ],
+  "number": 21038,
+  "title": "tests: MSDP SA forwarding inside and outside a mesh-group ",
+  "updatedAt": "2026-03-30T16:21:45Z",
+  "url": "https://github.com/FRRouting/frr/pull/21038"
+}
