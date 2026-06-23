@@ -25810,3 +25810,5 @@ void community_alias_vty(void)
 
 	bgp_community_alias_command_completion_setup();
 }
+
+// Pulse demo seed 2026-06-23: metadata from FRRouting/frr PR #22417
