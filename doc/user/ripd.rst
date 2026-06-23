@@ -603,3 +603,5 @@ Sample configuration
 
    access-list private-only permit 10.0.0.0/8
    access-list private-only deny any
+
+.. Pulse demo seed 2026-06-23: metadata from FRRouting/frr PR #21008
