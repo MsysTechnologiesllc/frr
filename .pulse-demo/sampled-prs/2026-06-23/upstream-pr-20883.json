@@ -1,0 +1,80 @@
+{
+  "author": {
+    "id": "MDQ6VXNlcjY4ODY3ODkx",
+    "is_bot": false,
+    "login": "ashred-lnx",
+    "name": ""
+  },
+  "baseRefName": "master",
+  "body": "When the gRPC northbound module (grpc.so) is loaded by mgmtd, serveGet(CONFIG) requests directly from the mgmtd datastore using a new in-process API.\r\n\r\n- New internal API in mgmtd:\r\n  - mgmt_grpc_get_tree_internal(master, ds_id, xpath, flags, wd_options,\r\n    result_type, out_lyb, out_len) in mgmtd/mgmt_grpc_internal.c/.h\r\n\r\n- Mgmtd binary:\r\n  - mgmt_grpc_internal.c is built into the mgmtd executable\r\n  - mgmtd_mgmtd_LDFLAGS = -rdynamic so the loaded grpc.so can resolve\r\n    mgmt_grpc_get_tree_internal and mm\r\n\r\n- lib/northbound_grpc.cpp (get_path):\r\n  - When type == GetRequest_DataType_CONFIG  call mgmt_grpc_get_tree_internal(),\r\n    parse the LYB with lyd_parse_data_mem(), and build the response\r\n\r\n- lib/subdir.am: grpc module build includes mgmt_grpc_internal.h for\r\n  the internal API declaration.\r\n\r\nTesting:\r\nsudo $HOME/workspace/frr_new/mgmtd/mgmtd -M grpc:50051 \\\r\n  --moduledir $HOME/workspace/frr_new/lib/.libs \\\r\n  --log stdout 2>&1\r\n2026/02/19 16:06:53 MGMTD: [G7SRG-ASAYW] mgmtd: finished reading config files 2026/02/19 16:06:53 MGMTD: [TKR4Z-MFN07] Backend daemon: mgmtd registers with mgmtd (client-id: 0) 2026/02/19 16:06:53 MGMTD: [VBJ70-K47NK] gRPC server listening on 0.0.0.0:50051 2026/02/19 16:06:53 MGMTD: [TKR4Z-MFN07] Backend daemon: staticd registers with mgmtd (client-id: 1) grpc: using internal path mm=0x557035a42f40 path=/frr-interface:lib\r\necho \"GET-CONFIG,/frr-interface:lib\" | python3 tests/topotests/lib/grpc-query.py --port=50051\r\n{\r\n  \"frr-interface:lib\": {\r\n    \"interface\": [\r\n      {\r\n        \"name\": \"eth0\",\r\n        \"frr-zebra:zebra\": {\r\n          \"ipv4-addrs\": [\r\n            {\r\n              \"ip\": \"192.168.1.1\",\r\n              \"prefix-length\": 24\r\n            }\r\n          ]\r\n        }\r\n      }\r\n    ]\r\n  }\r\n}\r\n\r\n\r\n\r\nSigned-off-by: Ashwini Reddy <ashred@nvidia.com>",
+  "createdAt": "2026-02-20T02:03:45Z",
+  "files": [
+    {
+      "additions": 57,
+      "changeType": "MODIFIED",
+      "deletions": 0,
+      "path": "lib/northbound_grpc.cpp"
+    },
+    {
+      "additions": 4,
+      "changeType": "MODIFIED",
+      "deletions": 0,
+      "path": "lib/subdir.am"
+    },
+    {
+      "additions": 171,
+      "changeType": "ADDED",
+      "deletions": 0,
+      "path": "mgmtd/mgmt_grpc_internal.c"
+    },
+    {
+      "additions": 37,
+      "changeType": "ADDED",
+      "deletions": 0,
+      "path": "mgmtd/mgmt_grpc_internal.h"
+    },
+    {
+      "additions": 3,
+      "changeType": "MODIFIED",
+      "deletions": 0,
+      "path": "mgmtd/subdir.am"
+    },
+    {
+      "additions": 55,
+      "changeType": "MODIFIED",
+      "deletions": 28,
+      "path": "tests/topotests/grpc_basic/test_basic_grpc.py"
+    }
+  ],
+  "headRefName": "grpc-mgmtd-move",
+  "labels": [
+    {
+      "color": "06a521",
+      "description": "",
+      "id": "MDU6TGFiZWwxMjQzNjgwMTk3",
+      "name": "libfrr"
+    },
+    {
+      "color": "C7051A",
+      "description": "",
+      "id": "MDU6TGFiZWwzMTA4MDY0NDY3",
+      "name": "conflicts"
+    },
+    {
+      "color": "ededed",
+      "description": "",
+      "id": "LA_kwDOBJDQj874kyPA",
+      "name": "master"
+    },
+    {
+      "color": "ededed",
+      "description": "",
+      "id": "LA_kwDOBJDQj88AAAABISaDbQ",
+      "name": "size/L"
+    }
+  ],
+  "number": 20883,
+  "title": "mgmtd: Embed gRPC in mgmtd (DRAFT)",
+  "updatedAt": "2026-06-01T13:12:17Z",
+  "url": "https://github.com/FRRouting/frr/pull/20883"
+}
