@@ -1,0 +1,50 @@
+{
+  "author": {
+    "id": "U_kgDOBtLi5Q",
+    "is_bot": false,
+    "login": "uwezkhan",
+    "name": ""
+  },
+  "baseRefName": "master",
+  "body": "eigrp_read derives the EIGRP payload length as iph->ip_len - 20U, which assumes the IPv4 header is always 20 bytes. When a received packet carries IP options the real header is iph->ip_hl * 4, so the length is too large by up to 40 bytes. eigrp_read passes that length to the opcode handlers (eigrp_hello_receive, eigrp_update_receive, eigrp_query_receive, eigrp_reply_receive), which walk a raw TLV pointer over the receive buffer bounded only by it, so a packet near the buffer size reads past the end.\n\nBefore, the payload length subtracts a fixed 20 regardless of the header, so options shift the parser past the real data. After, it subtracts iph->ip_hl << 2, the same way ospf_read advances over the IP header before parsing. The behavioral difference is limited to packets that actually carry IP options: those now report the correct, shorter payload and the trailing bytes are no longer treated as TLVs.",
+  "createdAt": "2026-06-08T15:17:09Z",
+  "files": [
+    {
+      "additions": 1,
+      "changeType": "MODIFIED",
+      "deletions": 1,
+      "path": "eigrpd/eigrp_packet.c"
+    }
+  ],
+  "headRefName": "eigrp-ip-header-len",
+  "labels": [
+    {
+      "color": "7a30a5",
+      "description": "",
+      "id": "MDU6TGFiZWwxMjE1MjY3MzI0",
+      "name": "eigrp"
+    },
+    {
+      "color": "ee0701",
+      "description": "",
+      "id": "MDU6TGFiZWwxMzA0NTIzOTM0",
+      "name": "bugfix"
+    },
+    {
+      "color": "ededed",
+      "description": "",
+      "id": "LA_kwDOBJDQj874kyPA",
+      "name": "master"
+    },
+    {
+      "color": "ededed",
+      "description": "",
+      "id": "LA_kwDOBJDQj88AAAABIQ9Xnw",
+      "name": "size/XS"
+    }
+  ],
+  "number": 22255,
+  "title": "eigrpd: compute received packet length from actual IP header size",
+  "updatedAt": "2026-06-22T14:40:38Z",
+  "url": "https://github.com/FRRouting/frr/pull/22255"
+}
