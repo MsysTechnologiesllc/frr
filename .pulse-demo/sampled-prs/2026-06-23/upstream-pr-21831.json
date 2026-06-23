@@ -1,0 +1,44 @@
+{
+  "author": {
+    "id": "U_kgDOCklKBA",
+    "is_bot": false,
+    "login": "yutanaofficial",
+    "name": "yutanaofficial"
+  },
+  "baseRefName": "master",
+  "body": "Settings:\r\n- Strictness 2, status check enabled, re-reviews on every push\r\n- Comment types: logic, syntax, style\r\n\r\nRule structure:\r\nEach rule has an id, description, scope, and severity.\r\n- Scope: glob patterns that limit which files the rule applies to (all three rules scope to **/*.c, **/*.h, **/*.cpp)\r\n- Severity: critical (P0 \u2014 must fix), high (P1 \u2014 should fix), medium (P2 \u2014 consider fix)\r\n\r\nRules cover:\r\n- Memory safety: XMALLOC/XCALLOC/XREALLOC/XSTRDUP/XFREE enforcement, no raw malloc/calloc/realloc/free, MTYPE tracking via DECLARE_MTYPE/DEFINE_MTYPE, prefer DEFINE_MTYPE_STATIC for module-private types\r\n- String safety: no strcpy/strcat/sprintf, enforce strlcpy/strlcat/snprintf, buffer size arguments must use sizeof()\r\n- Logging: zlog_* (zlog_debug, zlog_err, zlog_warn, zlog_info, zlog_notice) and flog_*/flog_err_sys (structured error logging with EC_* codes), no printf/stdio, all debug statements guarded by CLI-controllable debug flags\r\n\r\nDoc context loaded by Greptile (.greptile/files.json):\r\n- doc/developer/workflow.rst \u2014 coding standards, string-safety policy, debug-guard requirement\r\n- doc/developer/memtypes.rst \u2014 XMALLOC/MTYPE system reference\r\n- doc/developer/logging.rst \u2014 zlog/flog API, debug message conventions\r\n",
+  "createdAt": "2026-05-01T11:46:34Z",
+  "files": [
+    {
+      "additions": 50,
+      "changeType": "ADDED",
+      "deletions": 0,
+      "path": ".greptile/config.json"
+    },
+    {
+      "additions": 16,
+      "changeType": "ADDED",
+      "deletions": 0,
+      "path": ".greptile/files.json"
+    }
+  ],
+  "headRefName": "greptile-first-3-rules",
+  "labels": [
+    {
+      "color": "ededed",
+      "description": "",
+      "id": "LA_kwDOBJDQj874kyPA",
+      "name": "master"
+    },
+    {
+      "color": "ededed",
+      "description": "",
+      "id": "LA_kwDOBJDQj88AAAABIRkR3Q",
+      "name": "size/M"
+    }
+  ],
+  "number": 21831,
+  "title": "greptile: Add Greptile configuration for automated code review on PRs.",
+  "updatedAt": "2026-06-19T18:14:56Z",
+  "url": "https://github.com/FRRouting/frr/pull/21831"
+}
