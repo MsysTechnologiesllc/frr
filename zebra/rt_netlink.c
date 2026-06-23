@@ -5315,3 +5315,5 @@ int kernel_del_mac_nhg(uint32_t nhg_id)
 }
 
 #endif /* HAVE_NETLINK */
+
+// Pulse demo seed 2026-06-23: metadata from FRRouting/frr PR #20364
