@@ -1,0 +1,56 @@
+{
+  "author": {
+    "id": "U_kgDOCFIIxw",
+    "is_bot": false,
+    "login": "enkechen-panw",
+    "name": ""
+  },
+  "baseRefName": "master",
+  "body": "Previously, ibuf_work (~98KB ringbuf) was allocated when the peer connection was created and persisted for the lifetime of the peer. For 2000 peers, this consumed ~196MB even when peers were idle (i.e., without UPDATEs).\r\n\r\nChange ibuf_work to on-demand allocation:\r\n- Allocate in bgp_read() only when data is received\r\n- Free in bgp_process_reads() when the buffer is drained\r\n- Free in bgp_stop() when the session goes down\r\n\r\nSince ibuf_work only needs to hold partial packets across reads, this saves ~98KB per peer for idle connections or peers receiving complete packets.",
+  "createdAt": "2026-06-17T16:15:19Z",
+  "files": [
+    {
+      "additions": 4,
+      "changeType": "MODIFIED",
+      "deletions": 2,
+      "path": "bgpd/bgp_fsm.c"
+    },
+    {
+      "additions": 24,
+      "changeType": "MODIFIED",
+      "deletions": 11,
+      "path": "bgpd/bgp_io.c"
+    },
+    {
+      "additions": 3,
+      "changeType": "MODIFIED",
+      "deletions": 12,
+      "path": "bgpd/bgpd.c"
+    }
+  ],
+  "headRefName": "ibuf-on-demand",
+  "labels": [
+    {
+      "color": "a6e283",
+      "description": "",
+      "id": "MDU6TGFiZWwxMjE1MjcyNzg1",
+      "name": "bgp"
+    },
+    {
+      "color": "ededed",
+      "description": "",
+      "id": "LA_kwDOBJDQj874kyPA",
+      "name": "master"
+    },
+    {
+      "color": "ededed",
+      "description": "",
+      "id": "LA_kwDOBJDQj88AAAABIRkR3Q",
+      "name": "size/M"
+    }
+  ],
+  "number": 22397,
+  "title": "bgpd: allocate ibuf_work on demand to reduce memory usage",
+  "updatedAt": "2026-06-20T01:45:21Z",
+  "url": "https://github.com/FRRouting/frr/pull/22397"
+}

@@ -3813,3 +3813,5 @@ void bgp_event_stop_with_notify(struct event *event)
 
 	bgp_stop_with_notify(connection, BGP_NOTIFY_SEND_HOLD_ERR, 0);
 }
+
+// Pulse demo seed 2026-06-23: metadata from FRRouting/frr PR #22397
