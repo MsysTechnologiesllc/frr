@@ -1,0 +1,50 @@
+{
+  "author": {
+    "id": "MDQ6VXNlcjE2Mjk1NTM4",
+    "is_bot": false,
+    "login": "pguibert6WIND",
+    "name": "Philippe Guibert"
+  },
+  "baseRefName": "master",
+  "body": "When running some toptotests with BFD, configuring interface leads to error messages in bfdd.\r\n\r\n> 2026/04/14 14:30:44.935 BFD: [YDKB1-KBVT7] nb_candidate_edit_config_change: ignoring non-handled path: /frr-interface:lib/interface[name='lo']/frr-zebra:zeb\\\r\n> ra/ipv4-addrs[ip='1.1.1.1'][prefix-length='32']\r\n> 2026/04/14 14:30:44.935 BFD: [YDKB1-KBVT7] nb_candidate_edit_config_change: ignoring non-handled path: /frr-interface:lib/interface[name='lo']/frr-zebra:zeb\\\r\n> ra/ipv6-addrs[ip='::ffff:1.1.1.1'][prefix-length='128']\r\n> 2026/04/14 14:30:44.935 BFD: [YDKB1-KBVT7] nb_candidate_edit_config_change: ignoring non-handled path: /frr-interface:lib/interface[name='eth-rt2']/frr-zebr\\\r\n> a:zebra/ipv4-addrs[ip='10.0.1.1'][prefix-length='24']\r\n> [..]\r\n> 2026/04/14 14:30:44.936 BFD: [SWK28-M149C] northbound callback: event [validate] op [create] xpath [/frr-interface:lib/interface[name='lo']] value [(none)]\r\n> 2026/04/14 14:30:44.936 BFD: [SWK28-M149C] northbound callback: event [validate] op [create] xpath [/frr-interface:lib/interface[name='eth-rt2']] value [(no\\\r\n> ne)]\r\n> 2026/04/14 14:30:44.936 BFD: [SWK28-M149C] northbound callback: event [prepare] op [create] xpath [/frr-interface:lib/interface[name='lo']] value [(none)]\r\n> 2026/04/14 14:30:44.936 BFD: [SWK28-M149C] northbound callback: event [prepare] op [create] xpath [/frr-interface:lib/interface[name='eth-rt2']] value [(non\\\r\n> e)]\r\n> 2026/04/14 14:30:44.936 BFD: [M7Q4P-46WDR] vty[16]@(config)# debu northbound libyang\r\n>\r\n> 2026/04/14 14:30:44.936 BFD: [M7Q4P-46WDR] vty[16]@(config)# debu northbound notifications\r\n>\r\n> 2026/04/14 14:30:44.937 BFD: [M7Q4P-46WDR] vty[16]@(config)# bfd\r\n>\r\n> 2026/04/14 14:30:44.937 BFD: [SWK28-M149C] northbound callback: event [apply] op [create] xpath [/frr-interface:lib/interface[name='lo']] value [(none)]\r\n> 2026/04/14 14:30:44.937 BFD: [SWK28-M149C] northbound callback: event [apply] op [create] xpath [/frr-interface:lib/interface[name='eth-rt2']] value [(none)\\\r\n> ]\r\n> 2026/04/14 14:30:44.938 BFD: [M7Q4P-46WDR] vty[16]@(config-bfd)#  peer 10.0.1.2 interface eth-rt2\r\n>\r\n> 2026/04/14 14:30:44.938 BFD: [M7Q4P-46WDR] vty[16]@(config-bfd)# line vty\r\n>\r\n> 2026/04/14 14:30:44.939 BFD: [M7Q4P-46WDR] vty[16]@(config-line)# XFRR_end_configuration\r\n> 2026/04/14 14:30:44.939 BFD: [VTVCM-Y2NW3] Configuration Read in Took: 00:00:00\r\n> 2026/04/14 14:30:44.939 BFD: [G6NKK-8C6DV] end_config: VTY:0x622ef034ab70, pending SET-CFG: 0\r\n> 2026/04/14 14:30:44.939 BFD: [M7Q4P-46WDR] vty[16]@(config)# end\r\n> 2026/04/14 14:30:44.939 BFD: [M7Q4P-46WDR] vty[16]@# disable\r\n> 2026/04/14 14:30:45.426 BFD: [M7Q4P-46WDR] vty[5]@> enable\r\n\r\nThe per-interface commands are received by BFD, whereas BFD has no need to receive such commands. Remove it.\r\n\r\nFixes: adc26455bff1 (\"bfdd: migrate session commands to northbound\")",
+  "createdAt": "2026-04-14T12:43:52Z",
+  "files": [
+    {
+      "additions": 0,
+      "changeType": "MODIFIED",
+      "deletions": 1,
+      "path": "bfdd/bfdd.c"
+    }
+  ],
+  "headRefName": "bfd_ignore_non_handled_path",
+  "labels": [
+    {
+      "color": "177c7b",
+      "description": "",
+      "id": "MDU6TGFiZWwxMjMwNDYwOTk1",
+      "name": "bfd"
+    },
+    {
+      "color": "ee0701",
+      "description": "",
+      "id": "MDU6TGFiZWwxMzA0NTIzOTM0",
+      "name": "bugfix"
+    },
+    {
+      "color": "ededed",
+      "description": "",
+      "id": "LA_kwDOBJDQj874kyPA",
+      "name": "master"
+    },
+    {
+      "color": "ededed",
+      "description": "",
+      "id": "LA_kwDOBJDQj88AAAABIQ9Xnw",
+      "name": "size/XS"
+    }
+  ],
+  "number": 21529,
+  "title": "bfdd fix 'ignore non-handled path' error messages",
+  "updatedAt": "2026-06-19T18:12:49Z",
+  "url": "https://github.com/FRRouting/frr/pull/21529"
+}
