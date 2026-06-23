@@ -1,0 +1,44 @@
+{
+  "author": {
+    "id": "MDQ6VXNlcjM0NjcxOTcx",
+    "is_bot": false,
+    "login": "ningjunchen",
+    "name": ""
+  },
+  "baseRefName": "master",
+  "body": "named: nb_cli_enqueue_change_f\r\n\r\nhelpful for such CLI commands\uff1a\r\n\r\nDEFPY_YANG (my_slot_threadhold, my_slot_threadhold_cmd, \"threadhold {\"\r\n\t\" high-cpu (0-100)$hcv    | high-cpu-desert (0-100)$hcd    |\"\r\n\t\" high-memory (0-100)$hmv | high-memory-desert (0-100)$hmd |\"\r\n\t\" high-flash (0-100)$hfv  | high-flash-desert (0-100)$hfd  |\"\r\n\t\" high-temp (0-100)$htv   | high-temp-desert (0-100)$htd   |\"\r\n\t\" low-temp (-100-100)$ltv | low-temp-desert (-100-100)$ltd }\",\r\n\t... )\r\n{\r\n\tconst char *xpath = VTY_CURR_XPATH; //slot -or- subslot\r\n\tstruct lyd_node *dnode = get_slot_derived_from(vty, VTY_CURR_XPATH, \"card-with-cpu\");\r\n\tDEVM_CHK_DO(!dnode, return CMD_WARNING_CONFIG_FAILED);\r\n\tif(hcv_str) nb_cli_enqueue_change_f(vty, xpath, \"/config/cpu-tca/high-cpu-thr\",              NB_OP_MODIFY, hcv_str);\r\n\tif(hcd_str) nb_cli_enqueue_change_f(vty, xpath, \"/config/cpu-tca/high-cpu-desert-thr\",       NB_OP_MODIFY, hcd_str);\r\n\tif(hmv_str) nb_cli_enqueue_change_f(vty, xpath, \"/config/memory-tca/high-memory-thr\",        NB_OP_MODIFY, hmv_str);\r\n\tif(hmd_str) nb_cli_enqueue_change_f(vty, xpath, \"/config/memory-tca/high-memory-desert-thr\", NB_OP_MODIFY, hmd_str);\r\n\tif(hfv_str) nb_cli_enqueue_change_f(vty, xpath, \"/config/flash-tca/high-flash-thr\",          NB_OP_MODIFY, hfv_str);\r\n\tif(hfd_str) nb_cli_enqueue_change_f(vty, xpath, \"/config/flash-tca/high-flash-desert-thr\",   NB_OP_MODIFY, hfd_str);\r\n\tif(htv_str) nb_cli_enqueue_change_f(vty, xpath, \"/config/temp-tca/high-temp-thr\",            NB_OP_MODIFY, htv_str);\r\n\tif(htd_str) nb_cli_enqueue_change_f(vty, xpath, \"/config/temp-tca/high-temp-desert-thr\",     NB_OP_MODIFY, htd_str);\r\n\tif(ltv_str) nb_cli_enqueue_change_f(vty, xpath, \"/config/temp-tca/low-temp-thr\",             NB_OP_MODIFY, ltv_str);\r\n\tif(ltd_str) nb_cli_enqueue_change_f(vty, xpath, \"/config/temp-tca/low-temp-desert-thr\",      NB_OP_MODIFY, ltd_str);\r\n\treturn nb_cli_apply_changes(vty);\r\n}\r\n\r\nIf using nb_cli_dequeue_change, it requires twice the amount of code and additional xpath combinations on stack\r\n",
+  "createdAt": "2026-04-29T07:42:31Z",
+  "files": [
+    {
+      "additions": 16,
+      "changeType": "MODIFIED",
+      "deletions": 3,
+      "path": "lib/northbound_cli.c"
+    },
+    {
+      "additions": 16,
+      "changeType": "MODIFIED",
+      "deletions": 0,
+      "path": "lib/northbound_cli.h"
+    }
+  ],
+  "headRefName": "add-new-func-nb_cli_enqueue_change_f",
+  "labels": [
+    {
+      "color": "ededed",
+      "description": "",
+      "id": "LA_kwDOBJDQj874kyPA",
+      "name": "master"
+    },
+    {
+      "color": "ededed",
+      "description": "",
+      "id": "LA_kwDOBJDQj88AAAABIRkR3Q",
+      "name": "size/M"
+    }
+  ],
+  "number": 21804,
+  "title": "lib: northbound: add a enhance version of nb_cli_enqueue_change",
+  "updatedAt": "2026-06-19T18:14:38Z",
+  "url": "https://github.com/FRRouting/frr/pull/21804"
+}
