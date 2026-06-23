@@ -1,0 +1,50 @@
+{
+  "author": {
+    "id": "MDQ6VXNlcjY0MDc4NDUx",
+    "is_bot": false,
+    "login": "suresh2514",
+    "name": ""
+  },
+  "baseRefName": "master",
+  "body": "Current test only checks for '5 packets received' and fails to detect multicast failure\r\n\r\n stdout: ssmping joined (S,G) = (10.0.20.2,232.43.211.234)\r\n pinging S from 10.0.20.1\r\n   unicast from 10.0.20.2, seq=1 dist=0 time=0.099 ms\r\n   unicast from 10.0.20.2, seq=2 dist=0 time=0.190 ms\r\n   unicast from 10.0.20.2, seq=3 dist=0 time=0.250 ms\r\n   unicast from 10.0.20.2, seq=4 dist=0 time=0.239 ms\r\n   unicast from 10.0.20.2, seq=5 dist=0 time=0.550 ms\r\n\r\n --- 10.0.20.2 statistics ---\r\n 5 packets transmitted, time 5000 ms\r\n unicast:\r\n    5 packets received, 0% packet loss\r\n    rtt min/avg/max/std-dev = 0.099/0.265/0.550/0.152 ms\r\n multicast:\r\n    0 packets received, 100% packet loss\r\n\r\nWhen multicast are received, the output looks like:\r\n\r\n ssmping joined (S,G) = (10.0.20.2,232.43.211.234)\r\n pinging S from 10.0.20.1\r\n   unicast from 10.0.20.2, seq=1 dist=0 time=0.134 ms\r\n multicast from 10.0.20.2, seq=1 dist=0 time=0.150 ms\r\n   unicast from 10.0.20.2, seq=2 dist=0 time=0.237 ms\r\n multicast from 10.0.20.2, seq=2 dist=0 time=0.258 ms\r\n   unicast from 10.0.20.2, seq=3 dist=0 time=0.221 ms\r\n multicast from 10.0.20.2, seq=3 dist=0 time=0.237 ms\r\n   unicast from 10.0.20.2, seq=4 dist=0 time=0.212 ms\r\n multicast from 10.0.20.2, seq=4 dist=0 time=0.234 ms\r\n   unicast from 10.0.20.2, seq=5 dist=0 time=0.209 ms\r\n multicast from 10.0.20.2, seq=5 dist=0 time=0.220 ms\r\n\r\n --- 10.0.20.2 statistics ---\r\n 5 packets transmitted, time 5001 ms\r\n unicast:\r\n    5 packets received, 0% packet loss\r\n    rtt min/avg/max/std-dev = 0.134/0.202/0.237/0.038 ms\r\n multicast:\r\n    5 packets received, 0% packet loss since first mc packet (seq 1) recvd\r\n    rtt min/avg/max/std-dev = 0.150/0.219/0.258/0.041 ms\r\n\r\n Fix it to assert multicast reception",
+  "createdAt": "2026-04-21T14:17:09Z",
+  "files": [
+    {
+      "additions": 4,
+      "changeType": "MODIFIED",
+      "deletions": 2,
+      "path": "tests/topotests/pim_basic/test_pim.py"
+    }
+  ],
+  "headRefName": "pim_basic",
+  "labels": [
+    {
+      "color": "0f45aa",
+      "description": "Topotests, make check, etc",
+      "id": "MDU6TGFiZWwxMTgzMjc1MzYx",
+      "name": "tests"
+    },
+    {
+      "color": "ee0701",
+      "description": "",
+      "id": "MDU6TGFiZWwxMzA0NTIzOTM0",
+      "name": "bugfix"
+    },
+    {
+      "color": "ededed",
+      "description": "",
+      "id": "LA_kwDOBJDQj874kyPA",
+      "name": "master"
+    },
+    {
+      "color": "ededed",
+      "description": "",
+      "id": "LA_kwDOBJDQj88AAAABIQ9Xnw",
+      "name": "size/XS"
+    }
+  ],
+  "number": 21688,
+  "title": "tests: fix test_pim_ssm_ping",
+  "updatedAt": "2026-06-19T18:13:09Z",
+  "url": "https://github.com/FRRouting/frr/pull/21688"
+}
