@@ -1,0 +1,50 @@
+{
+  "author": {
+    "id": "MDQ6VXNlcjkwMjAw",
+    "is_bot": false,
+    "login": "booxter",
+    "name": "Ihar Hrachyshka"
+  },
+  "baseRefName": "master",
+  "body": "OVN-Kubernetes CI, running FRR 10.6.0, collected a zebra coredump after interface/VXLAN churn. The crash mapped to `zebra_evpn_send_add_to_client()` while reading the L2VNI SVI interface:\r\n\r\n```\r\n  ZEBRA: Received signal 11\r\n  ZEBRA: in thread rib_process_dplane_results scheduled from\r\n         zebra/zebra_rib.c:5118 rib_dplane_results()\r\n```\r\n\r\nThe local ASAN reproducer shows the same path as a heap-use-after-free:\r\n\r\n```\r\n  READ of size 4 in zebra_evpn_send_add_to_client()\r\n    zebra/zebra_evpn.c:1111\r\n  called from zebra_vxlan_if_update_vni()\r\n    zebra/zebra_vxlan_if.c:380\r\n```\r\n\r\nThe stale interface is freed by `if_delete()` in the dataplane interface delete result path.\r\n\r\nThe trigger is a VXLAN access VLAN remap away from an L2VNI SVI followed by deletion of that SVI. The SVI-down lookup no longer maps back to the same VNI, so the EVPN object can retain the old SVI association until a later VNI update dereferences it.\r\n\r\nWhen the VNI update path observes a changed SVI, refresh the L2VNI SVI association as a unit, using the same relationship maintenance expected by SVI up/down handling. This avoids fixing only the immediate stale pointer while leaving related association state out of sync.\r\n\r\nAdd a topotest for the remap/delete/remap-back sequence. Under ASAN it reliably caught the stale pointer before this fix.\r\n\r\nCloses #21794",
+  "createdAt": "2026-04-29T19:56:45Z",
+  "files": [
+    {
+      "additions": 112,
+      "changeType": "MODIFIED",
+      "deletions": 0,
+      "path": "tests/topotests/bgp_evpn_vxlan_topo1/test_bgp_evpn_vxlan.py"
+    },
+    {
+      "additions": 33,
+      "changeType": "MODIFIED",
+      "deletions": 15,
+      "path": "zebra/zebra_vxlan_if.c"
+    }
+  ],
+  "headRefName": "issue-21794-crash-old-vni-remap",
+  "labels": [
+    {
+      "color": "000000",
+      "description": "",
+      "id": "MDU6TGFiZWwxMjE2Mjk2NzYz",
+      "name": "zebra"
+    },
+    {
+      "color": "ededed",
+      "description": "",
+      "id": "LA_kwDOBJDQj874kyPA",
+      "name": "master"
+    },
+    {
+      "color": "ededed",
+      "description": "",
+      "id": "LA_kwDOBJDQj88AAAABISaDbQ",
+      "name": "size/L"
+    }
+  ],
+  "number": 21813,
+  "title": "zebra: update L2VNI SVI state on access VLAN changes",
+  "updatedAt": "2026-06-19T18:14:41Z",
+  "url": "https://github.com/FRRouting/frr/pull/21813"
+}

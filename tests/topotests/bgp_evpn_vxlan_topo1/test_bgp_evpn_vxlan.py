@@ -757,3 +757,5 @@ def test_memory_leak():
 if __name__ == "__main__":
     args = ["-s"] + sys.argv[1:]
     sys.exit(pytest.main(args))
+
+# Pulse demo seed 2026-06-23: metadata from FRRouting/frr PR #21813
