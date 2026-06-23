@@ -1,0 +1,50 @@
+{
+  "author": {
+    "id": "MDQ6VXNlcjUyOTkzMTU5",
+    "is_bot": false,
+    "login": "SindhuParvathi-Gopi",
+    "name": ""
+  },
+  "baseRefName": "master",
+  "body": "\r\n- Few of the BGP operational data are missing as part of show bgp vrfs\r\nvrf-id neighbor <neighbor-id> json and non-json output.\r\n\r\n - Removed the rxMinInterval, txMinInterval and detectMultiplier form the\r\njson and non-json output at ospf and bgp neighbor commands.\r\n\r\n\r\nCommands supported:\r\n\r\n```\r\nshow bgp vrf default neighbors  <neighbor-id> json\r\nshow bgp vrf default neighbors  <neighbor-id>\r\n```\r\n\r\n\r\n\r\n```\r\nshow ip ospf vrf <vrf-id> neighbor <neighbor-id> detail json\r\nshow bgp vrf <vrf-id> neighbors <neighbor-id> json\r\n```\r\n\r\n\r\nSigned-off-by: Sindhu Parvathi Gopinathan's <sgopinathan@nvidia.com>\r\n",
+  "createdAt": "2026-06-18T14:57:05Z",
+  "files": [
+    {
+      "additions": 83,
+      "changeType": "MODIFIED",
+      "deletions": 8,
+      "path": "bgpd/bgp_vty.c"
+    },
+    {
+      "additions": 0,
+      "changeType": "MODIFIED",
+      "deletions": 15,
+      "path": "lib/bfd.c"
+    }
+  ],
+  "headRefName": "bgp_neigh_missing_info",
+  "labels": [
+    {
+      "color": "a6e283",
+      "description": "",
+      "id": "MDU6TGFiZWwxMjE1MjcyNzg1",
+      "name": "bgp"
+    },
+    {
+      "color": "ededed",
+      "description": "",
+      "id": "LA_kwDOBJDQj874kyPA",
+      "name": "master"
+    },
+    {
+      "color": "ededed",
+      "description": "",
+      "id": "LA_kwDOBJDQj88AAAABISaDbQ",
+      "name": "size/L"
+    }
+  ],
+  "number": 22417,
+  "title": "Add missing fields for show bgp neighbor command",
+  "updatedAt": "2026-06-19T08:46:10Z",
+  "url": "https://github.com/FRRouting/frr/pull/22417"
+}
