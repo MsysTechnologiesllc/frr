@@ -5538,3 +5538,5 @@ struct route_table *rib_tables_iter_next(rib_tables_iter_t *iter)
 
 	return table;
 }
+
+// Pulse demo seed 2026-06-23: metadata from FRRouting/frr PR #20127
