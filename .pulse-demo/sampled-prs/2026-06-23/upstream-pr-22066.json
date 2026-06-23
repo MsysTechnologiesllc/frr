@@ -1,0 +1,38 @@
+{
+  "author": {
+    "id": "U_kgDODuHFSA",
+    "is_bot": false,
+    "login": "srinivasan-nexthop",
+    "name": ""
+  },
+  "baseRefName": "master",
+  "body": "Fixes: https://github.com/FRRouting/frr/issues/22065\r\n\r\nThis change addresses an issue when running topotests inside Docker containers where tmux panes fail to execute commands in network namespaces.\r\n\r\nProblem:\r\nWhen topotests run in Docker, tmux runs on the host while network namespaces exist inside the container. This causes tmux panes to fail when trying to access namespaces because they execute commands in the host context rather than the container context.\r\n\r\nSolution:\r\nThe change introduces a get_docker_container_id() function that detects if the process is running inside a Docker container by checking:\r\n- /proc/1/cgroup (cgroup v1 format)\r\n- /proc/self/mountinfo (cgroup v2 format)\r\n- Hostname pattern (fallback for containers with hostname set to container ID)\r\n\r\nWhen a Docker container is detected, commands executed in tmux panes are automatically prepended with 'docker exec -it <container_id>' to ensure they run inside the container where the network namespaces exist.\r\n\r\nThis fix is essential for topotest development and debugging workflows that rely on tmux for interactive access to router namespaces.",
+  "createdAt": "2026-05-26T06:00:15Z",
+  "files": [
+    {
+      "additions": 41,
+      "changeType": "MODIFIED",
+      "deletions": 0,
+      "path": "tests/topotests/munet/base.py"
+    }
+  ],
+  "headRefName": "srinivasan.topotests-Fix-tmux-execution-inside-Docker-containers",
+  "labels": [
+    {
+      "color": "ededed",
+      "description": "",
+      "id": "LA_kwDOBJDQj874kyPA",
+      "name": "master"
+    },
+    {
+      "color": "ededed",
+      "description": "",
+      "id": "LA_kwDOBJDQj88AAAABIRkR3Q",
+      "name": "size/M"
+    }
+  ],
+  "number": 22066,
+  "title": "topotests: Fix tmux execution inside Docker containers",
+  "updatedAt": "2026-06-19T18:17:52Z",
+  "url": "https://github.com/FRRouting/frr/pull/22066"
+}

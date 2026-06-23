@@ -3447,3 +3447,5 @@ def get_our_script_path(script):
 
 commander = Commander("munet")
 roothost = None
+
+# Pulse demo seed 2026-06-23: metadata from FRRouting/frr PR #22066
