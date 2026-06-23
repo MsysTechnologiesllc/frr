@@ -1,0 +1,56 @@
+{
+  "author": {
+    "id": "U_kgDODfsCBw",
+    "is_bot": false,
+    "login": "hnattamaisub",
+    "name": ""
+  },
+  "baseRefName": "master",
+  "body": "Problem description:\r\n1)In some corner cases in zebra, \u201cFailed to enqueue dataplane\u00a0 install\u201d happened for routes which was caused because of INVALID nhg. \r\n2)Our NHG code logic, check all nexthop entries is valid or not,but it does not check whether the nhg itself is valid or not during our checks which in turn cause route install failures in zebra.\r\n\r\nFix:\r\nHandled the nhg logic to check for validity during selection.",
+  "createdAt": "2025-11-26T10:56:59Z",
+  "files": [
+    {
+      "additions": 10,
+      "changeType": "MODIFIED",
+      "deletions": 0,
+      "path": "zebra/zebra_rib.c"
+    }
+  ],
+  "headRefName": "vrrp",
+  "labels": [
+    {
+      "color": "000000",
+      "description": "",
+      "id": "MDU6TGFiZWwxMjE2Mjk2NzYz",
+      "name": "zebra"
+    },
+    {
+      "color": "af1126",
+      "description": "",
+      "id": "MDU6TGFiZWwxMzIzODM1Mzcx",
+      "name": "autoclose"
+    },
+    {
+      "color": "ededed",
+      "description": "",
+      "id": "LA_kwDOBJDQj874kyPA",
+      "name": "master"
+    },
+    {
+      "color": "ededed",
+      "description": "",
+      "id": "LA_kwDOBJDQj88AAAABIRkdfw",
+      "name": "size/S"
+    },
+    {
+      "color": "B11622",
+      "description": "PR needs rebase",
+      "id": "LA_kwDOBJDQj88AAAABRZQM4Q",
+      "name": "rebase"
+    }
+  ],
+  "number": 20127,
+  "title": "zebra: nhg code selection doesnot check invalid status",
+  "updatedAt": "2026-06-04T02:15:27Z",
+  "url": "https://github.com/FRRouting/frr/pull/20127"
+}
