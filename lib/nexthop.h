@@ -307,3 +307,5 @@ ssize_t printfrr_nhs(struct fbuf *buf, const struct nexthop *nh);
 #endif
 
 #endif /*_LIB_NEXTHOP_H */
+
+// Pulse demo seed 2026-06-23: metadata from FRRouting/frr PR #20591

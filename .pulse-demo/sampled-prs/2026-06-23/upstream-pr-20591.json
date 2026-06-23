@@ -1,0 +1,116 @@
+{
+  "author": {
+    "id": "U_kgDOCaz6TA",
+    "is_bot": false,
+    "login": "enissim",
+    "name": ""
+  },
+  "baseRefName": "master",
+  "body": "When link goes down, there are many route updates that cause overload, \r\nsometimes buffer overflow\r\nin this scenario ROUTE_ENTRY_CHANGED is NOT set, thus avoiding the route updates\r\nKernel is only updates with NHG updated set of active nexthops",
+  "createdAt": "2026-01-24T06:34:04Z",
+  "files": [
+    {
+      "additions": 1,
+      "changeType": "MODIFIED",
+      "deletions": 0,
+      "path": "lib/nexthop.h"
+    },
+    {
+      "additions": 1,
+      "changeType": "MODIFIED",
+      "deletions": 2,
+      "path": "tests/topotests/zebra_multiple_connected/r1/ip_route_kernel_interface_down.json"
+    },
+    {
+      "additions": 29,
+      "changeType": "ADDED",
+      "deletions": 0,
+      "path": "tests/topotests/zebra_nhg_subset/r1/frr.conf"
+    },
+    {
+      "additions": 13,
+      "changeType": "ADDED",
+      "deletions": 0,
+      "path": "tests/topotests/zebra_nhg_subset/r2/frr.conf"
+    },
+    {
+      "additions": 13,
+      "changeType": "ADDED",
+      "deletions": 0,
+      "path": "tests/topotests/zebra_nhg_subset/r3/frr.conf"
+    },
+    {
+      "additions": 13,
+      "changeType": "ADDED",
+      "deletions": 0,
+      "path": "tests/topotests/zebra_nhg_subset/r4/frr.conf"
+    },
+    {
+      "additions": 13,
+      "changeType": "ADDED",
+      "deletions": 0,
+      "path": "tests/topotests/zebra_nhg_subset/r5/frr.conf"
+    },
+    {
+      "additions": 1929,
+      "changeType": "ADDED",
+      "deletions": 0,
+      "path": "tests/topotests/zebra_nhg_subset/test_zebra_nhg_subset.py"
+    },
+    {
+      "additions": 16,
+      "changeType": "MODIFIED",
+      "deletions": 0,
+      "path": "zebra/interface.c"
+    },
+    {
+      "additions": 25,
+      "changeType": "MODIFIED",
+      "deletions": 6,
+      "path": "zebra/zebra_nhg.c"
+    },
+    {
+      "additions": 20,
+      "changeType": "MODIFIED",
+      "deletions": 0,
+      "path": "zebra/zebra_rib.c"
+    }
+  ],
+  "headRefName": "nhg-change-4555798-donald",
+  "labels": [
+    {
+      "color": "0f45aa",
+      "description": "Topotests, make check, etc",
+      "id": "MDU6TGFiZWwxMTgzMjc1MzYx",
+      "name": "tests"
+    },
+    {
+      "color": "000000",
+      "description": "",
+      "id": "MDU6TGFiZWwxMjE2Mjk2NzYz",
+      "name": "zebra"
+    },
+    {
+      "color": "ededed",
+      "description": "",
+      "id": "LA_kwDOBJDQj874kyPA",
+      "name": "master"
+    },
+    {
+      "color": "ededed",
+      "description": "",
+      "id": "LA_kwDOBJDQj88AAAABIVoSQA",
+      "name": "size/XXL"
+    },
+    {
+      "color": "B11622",
+      "description": "PR needs rebase",
+      "id": "LA_kwDOBJDQj88AAAABRZQM4Q",
+      "name": "rebase"
+    }
+  ],
+  "number": 20591,
+  "title": "zebra: skip route updates when link goes down",
+  "updatedAt": "2026-01-27T15:22:09Z",
+  "url": "https://github.com/FRRouting/frr/pull/20591"
+}
