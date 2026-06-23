@@ -1,0 +1,104 @@
+{
+  "author": {
+    "id": "MDQ6VXNlcjE2OTY0Nzkw",
+    "is_bot": false,
+    "login": "davischw",
+    "name": "David Schweizer"
+  },
+  "baseRefName": "master",
+  "body": "Changes add conditionalized RFC 7474 strict seq number check compatibility.\r\n\r\nIf disabled (default), equal sequence numbers are rejected (>=), if enabled only strictly lower sequence numbers are rejected (>).\r\n\r\nThe compatibility can be enabled globally or per interface, with the per-interface setting overriding the global setting.\r\n\r\nConfiguration commands added:\r\nRouter node: [no] compatible rfc7474\r\nInterface node: [no] ip ospf compatible rfc7474 [A.B.C.D]\r\n\r\nFixes issue https://github.com/FRRouting/frr/issues/21387",
+  "createdAt": "2026-04-01T10:21:01Z",
+  "files": [
+    {
+      "additions": 24,
+      "changeType": "MODIFIED",
+      "deletions": 0,
+      "path": "doc/user/ospfd.rst"
+    },
+    {
+      "additions": 54,
+      "changeType": "MODIFIED",
+      "deletions": 22,
+      "path": "ospfd/ospf_auth.c"
+    },
+    {
+      "additions": 3,
+      "changeType": "MODIFIED",
+      "deletions": 0,
+      "path": "ospfd/ospf_interface.h"
+    },
+    {
+      "additions": 79,
+      "changeType": "MODIFIED",
+      "deletions": 8,
+      "path": "ospfd/ospf_vty.c"
+    },
+    {
+      "additions": 1,
+      "changeType": "MODIFIED",
+      "deletions": 0,
+      "path": "ospfd/ospfd.c"
+    },
+    {
+      "additions": 1,
+      "changeType": "MODIFIED",
+      "deletions": 0,
+      "path": "ospfd/ospfd.h"
+    },
+    {
+      "additions": 0,
+      "changeType": "ADDED",
+      "deletions": 0,
+      "path": "tests/topotests/ospf_rfc7474_compat/__init__.py"
+    },
+    {
+      "additions": 50,
+      "changeType": "ADDED",
+      "deletions": 0,
+      "path": "tests/topotests/ospf_rfc7474_compat/ospf_rfc7474_compat.json"
+    },
+    {
+      "additions": 356,
+      "changeType": "ADDED",
+      "deletions": 0,
+      "path": "tests/topotests/ospf_rfc7474_compat/test_ospf_rfc7474_compat.py"
+    }
+  ],
+  "headRefName": "ospf-rfc7474-compat",
+  "labels": [
+    {
+      "color": "b5e2e2",
+      "description": "",
+      "id": "MDU6TGFiZWw2NjkxNjM1MTk=",
+      "name": "documentation"
+    },
+    {
+      "color": "0f45aa",
+      "description": "Topotests, make check, etc",
+      "id": "MDU6TGFiZWwxMTgzMjc1MzYx",
+      "name": "tests"
+    },
+    {
+      "color": "086aaf",
+      "description": "",
+      "id": "MDU6TGFiZWwxMjE2MjkzNzQ5",
+      "name": "ospf"
+    },
+    {
+      "color": "ededed",
+      "description": "",
+      "id": "LA_kwDOBJDQj874kyPA",
+      "name": "master"
+    },
+    {
+      "color": "ededed",
+      "description": "",
+      "id": "LA_kwDOBJDQj88AAAABIRFhYQ",
+      "name": "size/XL"
+    }
+  ],
+  "number": 21434,
+  "title": "ospfd: Add configurable RFC 7474 compatibility",
+  "updatedAt": "2026-06-19T18:11:27Z",
+  "url": "https://github.com/FRRouting/frr/pull/21434"
+}

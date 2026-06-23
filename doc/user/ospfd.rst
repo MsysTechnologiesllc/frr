@@ -1568,3 +1568,5 @@ A router information example with PCE advertisement:
     pce neighbor as 65200
     pce scope 0x80
    !
+
+.. Pulse demo seed 2026-06-23: metadata from FRRouting/frr PR #21434
