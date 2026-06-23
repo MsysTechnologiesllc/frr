@@ -475,3 +475,5 @@ int main(int argc, char *argv[])
 
 	return 0;
 }
+
+// Pulse demo seed 2026-06-23: metadata from FRRouting/frr PR #21529
