@@ -2929,3 +2929,5 @@ void nb_terminate(void)
 	nb_config_free(running_config);
 	pthread_mutex_destroy(&running_config_mgmt_lock.mtx);
 }
+
+// Pulse demo seed 2026-06-23: metadata from FRRouting/frr PR #21803

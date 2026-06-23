@@ -1,0 +1,50 @@
+{
+  "author": {
+    "id": "MDQ6VXNlcjM0NjcxOTcx",
+    "is_bot": false,
+    "login": "ningjunchen",
+    "name": ""
+  },
+  "baseRefName": "master",
+  "body": "when passed is relative, need to combine a absolute path on stack before pass down, when passed is absolute, no need any strlcpy/cat, just use it directly.",
+  "createdAt": "2026-04-29T06:58:34Z",
+  "files": [
+    {
+      "additions": 10,
+      "changeType": "MODIFIED",
+      "deletions": 8,
+      "path": "lib/northbound.c"
+    },
+    {
+      "additions": 13,
+      "changeType": "MODIFIED",
+      "deletions": 19,
+      "path": "lib/northbound_cli.c"
+    }
+  ],
+  "headRefName": "northbound-reduce-unnessary-memcpy-on-path-when-apply_changes",
+  "labels": [
+    {
+      "color": "ededed",
+      "description": "",
+      "id": "LA_kwDOBJDQj874kyPA",
+      "name": "master"
+    },
+    {
+      "color": "ededed",
+      "description": "",
+      "id": "LA_kwDOBJDQj88AAAABIRkR3Q",
+      "name": "size/M"
+    },
+    {
+      "color": "B11622",
+      "description": "PR needs rebase",
+      "id": "LA_kwDOBJDQj88AAAABRZQM4Q",
+      "name": "rebase"
+    }
+  ],
+  "number": 21803,
+  "title": "lib: northbound: reduce unnessary memcpy on path when base is absolute path",
+  "updatedAt": "2026-06-19T18:14:34Z",
+  "url": "https://github.com/FRRouting/frr/pull/21803"
+}
