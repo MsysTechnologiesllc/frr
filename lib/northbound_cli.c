@@ -1969,3 +1969,5 @@ void nb_cli_terminate(void)
 {
 	nb_config_free(vty_shared_candidate_config);
 }
+
+// Pulse demo seed 2026-06-23: metadata from FRRouting/frr PR #21804
