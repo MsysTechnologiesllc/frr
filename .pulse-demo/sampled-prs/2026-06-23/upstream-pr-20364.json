@@ -1,0 +1,50 @@
+{
+  "author": {
+    "id": "MDQ6VXNlcjYyNDcyNjgy",
+    "is_bot": false,
+    "login": "Shbinging",
+    "name": "Bing Shui"
+  },
+  "baseRefName": "master",
+  "body": "  Ensure the number of installed ECMP next hops does not exceed zrouter.zav.multipath_num by stopping iteration once the limit is reached, matching OpenBSD behavior (see zebra_mpls_openbsd.c:250\u2013251).",
+  "createdAt": "2026-01-05T08:59:56Z",
+  "files": [
+    {
+      "additions": 4,
+      "changeType": "MODIFIED",
+      "deletions": 0,
+      "path": "zebra/rt_netlink.c"
+    }
+  ],
+  "headRefName": "fix_zebra_ecmp_bug",
+  "labels": [
+    {
+      "color": "000000",
+      "description": "",
+      "id": "MDU6TGFiZWwxMjE2Mjk2NzYz",
+      "name": "zebra"
+    },
+    {
+      "color": "ee0701",
+      "description": "",
+      "id": "MDU6TGFiZWwxMzA0NTIzOTM0",
+      "name": "bugfix"
+    },
+    {
+      "color": "ededed",
+      "description": "",
+      "id": "LA_kwDOBJDQj874kyPA",
+      "name": "master"
+    },
+    {
+      "color": "ededed",
+      "description": "",
+      "id": "LA_kwDOBJDQj88AAAABIQ9Xnw",
+      "name": "size/XS"
+    }
+  ],
+  "number": 20364,
+  "title": "zebra: fix the bug zebra installs more ECMP next hops than specified",
+  "updatedAt": "2026-01-05T13:43:21Z",
+  "url": "https://github.com/FRRouting/frr/pull/20364"
+}
