@@ -1327,3 +1327,5 @@ static int frr_grpc_module_init(void)
 FRR_MODULE_SETUP(.name = "frr_grpc", .version = FRR_VERSION,
 		 .description = "FRR gRPC northbound module",
 		 .init = frr_grpc_module_init, );
+
+// Pulse demo seed 2026-06-23: metadata from FRRouting/frr PR #20883
