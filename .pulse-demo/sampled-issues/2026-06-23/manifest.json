@@ -1,0 +1,142 @@
+[
+  {
+    "artifact": ".pulse-demo/sampled-issues/2026-06-23/fork-issue-11-upstream-18188-pulse-demo-2026-06-23-routes-from-ibgp-not-resolving-next-hop-using-non-bgp.md",
+    "fork_issue": 11,
+    "fork_url": "https://github.com/MsysTechnologiesllc/frr/issues/11",
+    "title": "[Pulse demo][2026-06-23] routes from iBGP not resolving next-hop using non-BGP",
+    "upstream_issue": "18188"
+  },
+  {
+    "artifact": ".pulse-demo/sampled-issues/2026-06-23/fork-issue-12-upstream-20995-pulse-demo-2026-06-23-bgp-routes-are-removed-immediately-when-bgp-is-down-for-fi.md",
+    "fork_issue": 12,
+    "fork_url": "https://github.com/MsysTechnologiesllc/frr/issues/12",
+    "title": "[Pulse demo][2026-06-23] bgp: routes are removed immediately when BGP is down for first time on the peer side without honoring the GR restart timer. The subsequent BGP DOWN/UP is working fine with GR settings",
+    "upstream_issue": "20995"
+  },
+  {
+    "artifact": ".pulse-demo/sampled-issues/2026-06-23/fork-issue-13-upstream-12197-pulse-demo-2026-06-23-interface-goes-down-frr-holds-back-on-the-static-kernel-ro.md",
+    "fork_issue": 13,
+    "fork_url": "https://github.com/MsysTechnologiesllc/frr/issues/13",
+    "title": "[Pulse demo][2026-06-23] Interface goes down FRR holds back on the static kernel routes",
+    "upstream_issue": "12197"
+  },
+  {
+    "artifact": ".pulse-demo/sampled-issues/2026-06-23/fork-issue-14-upstream-17550-pulse-demo-2026-06-23-weird-inactive-interface-in-route-table-on-frr-10.2.md",
+    "fork_issue": 14,
+    "fork_url": "https://github.com/MsysTechnologiesllc/frr/issues/14",
+    "title": "[Pulse demo][2026-06-23] Weird inactive interface in route table on frr-10.2",
+    "upstream_issue": "17550"
+  },
+  {
+    "artifact": ".pulse-demo/sampled-issues/2026-06-23/fork-issue-15-upstream-9185-pulse-demo-2026-06-23-kernel-routes-missed-in-case-of-no-gateway-ip-address.md",
+    "fork_issue": 15,
+    "fork_url": "https://github.com/MsysTechnologiesllc/frr/issues/15",
+    "title": "[Pulse demo][2026-06-23] Kernel routes missed in case of no gateway IP address ",
+    "upstream_issue": "9185"
+  },
+  {
+    "artifact": ".pulse-demo/sampled-issues/2026-06-23/fork-issue-16-upstream-12764-pulse-demo-2026-06-23-bgpd-configure-1000-route-maps-take-a-long-time.md",
+    "fork_issue": 16,
+    "fork_url": "https://github.com/MsysTechnologiesllc/frr/issues/16",
+    "title": "[Pulse demo][2026-06-23] bgpd\uff1aconfigure 1000 route-maps take a long time",
+    "upstream_issue": "12764"
+  },
+  {
+    "artifact": ".pulse-demo/sampled-issues/2026-06-23/fork-issue-17-upstream-8728-pulse-demo-2026-06-23-ospfd-s-behavior-allows-a-malformed-router-lsa-to-persists.md",
+    "fork_issue": 17,
+    "fork_url": "https://github.com/MsysTechnologiesllc/frr/issues/17",
+    "title": "[Pulse demo][2026-06-23] ospfd's behavior allows a malformed Router LSA to persists in the routing domain",
+    "upstream_issue": "8728"
+  },
+  {
+    "artifact": ".pulse-demo/sampled-issues/2026-06-23/fork-issue-18-upstream-21444-pulse-demo-2026-06-23-zebra-killed-by-watchfrr-due-to-falsely-detected-as-non-re.md",
+    "fork_issue": 18,
+    "fork_url": "https://github.com/MsysTechnologiesllc/frr/issues/18",
+    "title": "[Pulse demo][2026-06-23] zebra killed by watchfrr due to (falsely) detected as non-responsive",
+    "upstream_issue": "21444"
+  },
+  {
+    "artifact": ".pulse-demo/sampled-issues/2026-06-23/fork-issue-19-upstream-21245-pulse-demo-2026-06-23-vrf-directive-not-cleaned-up-when-the-configuration-file-i.md",
+    "fork_issue": 19,
+    "fork_url": "https://github.com/MsysTechnologiesllc/frr/issues/19",
+    "title": "[Pulse demo][2026-06-23] VRF directive not cleaned up when the configuration file is reloaded through the reloader script",
+    "upstream_issue": "21245"
+  },
+  {
+    "artifact": ".pulse-demo/sampled-issues/2026-06-23/fork-issue-20-upstream-21441-pulse-demo-2026-06-23-bgp-evpn-advertise-svi-ip-only-works-after-toggling-flag-e.md",
+    "fork_issue": 20,
+    "fork_url": "https://github.com/MsysTechnologiesllc/frr/issues/20",
+    "title": "[Pulse demo][2026-06-23] bgp/evpn: advertise-svi-ip only works after toggling flag, evpn_set_advertise_svi_macip happens too soon (before Zebra connection is ready)",
+    "upstream_issue": "21441"
+  },
+  {
+    "artifact": ".pulse-demo/sampled-issues/2026-06-23/fork-issue-21-upstream-12929-pulse-demo-2026-06-23-debug-commands-in-config-mode-not-in-running-configuration.md",
+    "fork_issue": 21,
+    "fork_url": "https://github.com/MsysTechnologiesllc/frr/issues/21",
+    "title": "[Pulse demo][2026-06-23] debug commands in config mode not in running configuration",
+    "upstream_issue": "12929"
+  },
+  {
+    "artifact": ".pulse-demo/sampled-issues/2026-06-23/fork-issue-22-upstream-21472-pulse-demo-2026-06-23-frr-inappropriately-removes-local-static-neigh-bridge-entr.md",
+    "fork_issue": 22,
+    "fork_url": "https://github.com/MsysTechnologiesllc/frr/issues/22",
+    "title": "[Pulse demo][2026-06-23] FRR inappropriately removes local static neigh/bridge entries during VM live-migration in EVPN fabrics",
+    "upstream_issue": "21472"
+  },
+  {
+    "artifact": ".pulse-demo/sampled-issues/2026-06-23/fork-issue-23-upstream-19276-pulse-demo-2026-06-23-ospfv3-flap-against-cisco-switch.md",
+    "fork_issue": 23,
+    "fork_url": "https://github.com/MsysTechnologiesllc/frr/issues/23",
+    "title": "[Pulse demo][2026-06-23] OSPFv3 flap against Cisco switch",
+    "upstream_issue": "19276"
+  },
+  {
+    "artifact": ".pulse-demo/sampled-issues/2026-06-23/fork-issue-24-upstream-20627-pulse-demo-2026-06-23-feature-request-i-bgp-fall-over-support-with-selective-add.md",
+    "fork_issue": 24,
+    "fork_url": "https://github.com/MsysTechnologiesllc/frr/issues/24",
+    "title": "[Pulse demo][2026-06-23] Feature Request: (i)BGP fall-over support with selective address tracking",
+    "upstream_issue": "20627"
+  },
+  {
+    "artifact": ".pulse-demo/sampled-issues/2026-06-23/fork-issue-25-upstream-22452-pulse-demo-2026-06-23-ospf6d-killnbr-not-being-logged.md",
+    "fork_issue": 25,
+    "fork_url": "https://github.com/MsysTechnologiesllc/frr/issues/25",
+    "title": "[Pulse demo][2026-06-23] ospf6d: KillNbr not being logged",
+    "upstream_issue": "22452"
+  },
+  {
+    "artifact": ".pulse-demo/sampled-issues/2026-06-23/fork-issue-26-upstream-15800-pulse-demo-2026-06-23-8.5.2---10.0-ospf6d-ospf-packet-auth-digest-miss-match.md",
+    "fork_issue": 26,
+    "fork_url": "https://github.com/MsysTechnologiesllc/frr/issues/26",
+    "title": "[Pulse demo][2026-06-23] 8.5.2 <-> 10.0  ospf6d OSPF packet auth digest miss-match",
+    "upstream_issue": "15800"
+  },
+  {
+    "artifact": ".pulse-demo/sampled-issues/2026-06-23/fork-issue-27-upstream-12344-pulse-demo-2026-06-23-route-redistribution-in-eigrpd-not-work.md",
+    "fork_issue": 27,
+    "fork_url": "https://github.com/MsysTechnologiesllc/frr/issues/27",
+    "title": "[Pulse demo][2026-06-23] route redistribution in EIGRPD not work",
+    "upstream_issue": "12344"
+  },
+  {
+    "artifact": ".pulse-demo/sampled-issues/2026-06-23/fork-issue-28-upstream-14061-pulse-demo-2026-06-23-pim6-is-incorrectly-warning-about-yang_dnode_get-issues-wh.md",
+    "fork_issue": 28,
+    "fork_url": "https://github.com/MsysTechnologiesllc/frr/issues/28",
+    "title": "[Pulse demo][2026-06-23] pim6 is incorrectly warning about yang_dnode_get issues when issuing `ipv6 pim rp ...` commands",
+    "upstream_issue": "14061"
+  },
+  {
+    "artifact": ".pulse-demo/sampled-issues/2026-06-23/fork-issue-29-upstream-20712-pulse-demo-2026-06-23-show-bgp-l2vpn-evpn-vni-shows-wrong-import-rt-for-l2vnis-w.md",
+    "fork_issue": 29,
+    "fork_url": "https://github.com/MsysTechnologiesllc/frr/issues/29",
+    "title": "[Pulse demo][2026-06-23] `show bgp l2vpn evpn vni` shows wrong import-rt for L2VNIs with automatic RT",
+    "upstream_issue": "20712"
+  },
+  {
+    "artifact": ".pulse-demo/sampled-issues/2026-06-23/fork-issue-30-upstream-22320-pulse-demo-2026-06-23-topotests-provide-a-migration-path-from-exabgp-4.2-to-5.x.md",
+    "fork_issue": 30,
+    "fork_url": "https://github.com/MsysTechnologiesllc/frr/issues/30",
+    "title": "[Pulse demo][2026-06-23] topotests: provide a migration path from ExaBGP 4.2 to 5.x",
+    "upstream_issue": "22320"
+  }
+]
