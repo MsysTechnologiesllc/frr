@@ -1,0 +1,374 @@
+{
+  "author": {
+    "id": "MDQ6VXNlcjIwNTA2Mw==",
+    "is_bot": false,
+    "login": "rzalamena",
+    "name": "Rafael Zalamena"
+  },
+  "baseRefName": "master",
+  "body": "New RIP command in interface node to toggle its functionality similarly like OSPF, IS-IS or PIM.",
+  "createdAt": "2026-03-05T01:44:49Z",
+  "files": [
+    {
+      "additions": 9,
+      "changeType": "MODIFIED",
+      "deletions": 0,
+      "path": "doc/user/ripd.rst"
+    },
+    {
+      "additions": 34,
+      "changeType": "MODIFIED",
+      "deletions": 0,
+      "path": "ripd/rip_cli.c"
+    },
+    {
+      "additions": 57,
+      "changeType": "MODIFIED",
+      "deletions": 32,
+      "path": "ripd/rip_interface.c"
+    },
+    {
+      "additions": 3,
+      "changeType": "MODIFIED",
+      "deletions": 0,
+      "path": "ripd/rip_interface.h"
+    },
+    {
+      "additions": 6,
+      "changeType": "MODIFIED",
+      "deletions": 0,
+      "path": "ripd/rip_nb.c"
+    },
+    {
+      "additions": 1,
+      "changeType": "MODIFIED",
+      "deletions": 0,
+      "path": "ripd/rip_nb.h"
+    },
+    {
+      "additions": 28,
+      "changeType": "MODIFIED",
+      "deletions": 0,
+      "path": "ripd/rip_nb_config.c"
+    },
+    {
+      "additions": 8,
+      "changeType": "MODIFIED",
+      "deletions": 10,
+      "path": "ripd/ripd.c"
+    },
+    {
+      "additions": 13,
+      "changeType": "MODIFIED",
+      "deletions": 3,
+      "path": "ripd/ripd.h"
+    },
+    {
+      "additions": 1,
+      "changeType": "MODIFIED",
+      "deletions": 1,
+      "path": "tests/topotests/all_protocol_startup/r1/rip_status.ref"
+    },
+    {
+      "additions": 4,
+      "changeType": "MODIFIED",
+      "deletions": 1,
+      "path": "tests/topotests/all_protocol_startup/r1/ripd.conf"
+    },
+    {
+      "additions": 1,
+      "changeType": "MODIFIED",
+      "deletions": 1,
+      "path": "tests/topotests/mgmt_notif/r1/frr.conf"
+    },
+    {
+      "additions": 1,
+      "changeType": "MODIFIED",
+      "deletions": 1,
+      "path": "tests/topotests/mgmt_notif/r2/frr.conf"
+    },
+    {
+      "additions": 4,
+      "changeType": "MODIFIED",
+      "deletions": 1,
+      "path": "tests/topotests/pim_prune/rp/frr.conf"
+    },
+    {
+      "additions": 4,
+      "changeType": "MODIFIED",
+      "deletions": 1,
+      "path": "tests/topotests/pim_prune/spine1/frr.conf"
+    },
+    {
+      "additions": 4,
+      "changeType": "MODIFIED",
+      "deletions": 1,
+      "path": "tests/topotests/pim_prune/spine2/frr.conf"
+    },
+    {
+      "additions": 5,
+      "changeType": "MODIFIED",
+      "deletions": 1,
+      "path": "tests/topotests/pim_prune/torc11/frr.conf"
+    },
+    {
+      "additions": 4,
+      "changeType": "MODIFIED",
+      "deletions": 1,
+      "path": "tests/topotests/pim_prune/torc21/frr.conf"
+    },
+    {
+      "additions": 1,
+      "changeType": "MODIFIED",
+      "deletions": 1,
+      "path": "tests/topotests/rip_allow_ecmp/r1/frr.conf"
+    },
+    {
+      "additions": 2,
+      "changeType": "MODIFIED",
+      "deletions": 2,
+      "path": "tests/topotests/rip_allow_ecmp/r2/frr.conf"
+    },
+    {
+      "additions": 2,
+      "changeType": "MODIFIED",
+      "deletions": 2,
+      "path": "tests/topotests/rip_allow_ecmp/r3/frr.conf"
+    },
+    {
+      "additions": 2,
+      "changeType": "MODIFIED",
+      "deletions": 2,
+      "path": "tests/topotests/rip_allow_ecmp/r4/frr.conf"
+    },
+    {
+      "additions": 2,
+      "changeType": "MODIFIED",
+      "deletions": 2,
+      "path": "tests/topotests/rip_allow_ecmp/r5/frr.conf"
+    },
+    {
+      "additions": 2,
+      "changeType": "MODIFIED",
+      "deletions": 2,
+      "path": "tests/topotests/rip_bfd_topo1/r1/ripd.conf"
+    },
+    {
+      "additions": 1,
+      "changeType": "MODIFIED",
+      "deletions": 1,
+      "path": "tests/topotests/rip_bfd_topo1/r2/ripd.conf"
+    },
+    {
+      "additions": 1,
+      "changeType": "MODIFIED",
+      "deletions": 1,
+      "path": "tests/topotests/rip_bfd_topo1/r3/ripd.conf"
+    },
+    {
+      "additions": 1,
+      "changeType": "MODIFIED",
+      "deletions": 1,
+      "path": "tests/topotests/rip_default_metric/r1/frr.conf"
+    },
+    {
+      "additions": 1,
+      "changeType": "MODIFIED",
+      "deletions": 1,
+      "path": "tests/topotests/rip_default_metric/r2/frr.conf"
+    },
+    {
+      "additions": 1,
+      "changeType": "MODIFIED",
+      "deletions": 1,
+      "path": "tests/topotests/rip_default_route_handling/r1/frr.conf"
+    },
+    {
+      "additions": 1,
+      "changeType": "MODIFIED",
+      "deletions": 1,
+      "path": "tests/topotests/rip_default_route_handling/r2/frr.conf"
+    },
+    {
+      "additions": 1,
+      "changeType": "MODIFIED",
+      "deletions": 1,
+      "path": "tests/topotests/rip_disabled_networks/r1/frr.conf"
+    },
+    {
+      "additions": 1,
+      "changeType": "MODIFIED",
+      "deletions": 1,
+      "path": "tests/topotests/rip_disabled_networks/r2/frr.conf"
+    },
+    {
+      "additions": 1,
+      "changeType": "MODIFIED",
+      "deletions": 1,
+      "path": "tests/topotests/rip_disabled_networks/r3/frr.conf"
+    },
+    {
+      "additions": 4,
+      "changeType": "MODIFIED",
+      "deletions": 4,
+      "path": "tests/topotests/rip_distance/r1/frr.conf"
+    },
+    {
+      "additions": 2,
+      "changeType": "MODIFIED",
+      "deletions": 2,
+      "path": "tests/topotests/rip_distance/r2/frr.conf"
+    },
+    {
+      "additions": 2,
+      "changeType": "MODIFIED",
+      "deletions": 2,
+      "path": "tests/topotests/rip_distance/r3/frr.conf"
+    },
+    {
+      "additions": 2,
+      "changeType": "MODIFIED",
+      "deletions": 2,
+      "path": "tests/topotests/rip_distance/r4/frr.conf"
+    },
+    {
+      "additions": 2,
+      "changeType": "MODIFIED",
+      "deletions": 2,
+      "path": "tests/topotests/rip_no_neighbor/r1/frr.conf"
+    },
+    {
+      "additions": 2,
+      "changeType": "MODIFIED",
+      "deletions": 2,
+      "path": "tests/topotests/rip_no_neighbor/r2/frr.conf"
+    },
+    {
+      "additions": 1,
+      "changeType": "MODIFIED",
+      "deletions": 1,
+      "path": "tests/topotests/rip_passive_interface/r1/frr.conf"
+    },
+    {
+      "additions": 2,
+      "changeType": "MODIFIED",
+      "deletions": 3,
+      "path": "tests/topotests/rip_passive_interface/r2/frr.conf"
+    },
+    {
+      "additions": 2,
+      "changeType": "MODIFIED",
+      "deletions": 3,
+      "path": "tests/topotests/rip_passive_interface/r3/frr.conf"
+    },
+    {
+      "additions": 1,
+      "changeType": "MODIFIED",
+      "deletions": 1,
+      "path": "tests/topotests/rip_split_horizon/r1/frr.conf"
+    },
+    {
+      "additions": 2,
+      "changeType": "MODIFIED",
+      "deletions": 2,
+      "path": "tests/topotests/rip_split_horizon/r2/frr.conf"
+    },
+    {
+      "additions": 1,
+      "changeType": "MODIFIED",
+      "deletions": 1,
+      "path": "tests/topotests/rip_split_horizon/r3/frr.conf"
+    },
+    {
+      "additions": 1,
+      "changeType": "MODIFIED",
+      "deletions": 1,
+      "path": "tests/topotests/rip_topo1/r1/rip_status.ref"
+    },
+    {
+      "additions": 12,
+      "changeType": "MODIFIED",
+      "deletions": 3,
+      "path": "tests/topotests/rip_topo1/r1/ripd.conf"
+    },
+    {
+      "additions": 2,
+      "changeType": "MODIFIED",
+      "deletions": 2,
+      "path": "tests/topotests/rip_topo1/r2/rip_status.ref"
+    },
+    {
+      "additions": 7,
+      "changeType": "MODIFIED",
+      "deletions": 2,
+      "path": "tests/topotests/rip_topo1/r2/ripd.conf"
+    },
+    {
+      "additions": 1,
+      "changeType": "MODIFIED",
+      "deletions": 1,
+      "path": "tests/topotests/rip_topo1/r3/rip_status.ref"
+    },
+    {
+      "additions": 3,
+      "changeType": "MODIFIED",
+      "deletions": 1,
+      "path": "tests/topotests/rip_topo1/r3/ripd.conf"
+    },
+    {
+      "additions": 15,
+      "changeType": "MODIFIED",
+      "deletions": 0,
+      "path": "yang/frr-ripd.yang"
+    }
+  ],
+  "headRefName": "rip-interface",
+  "labels": [
+    {
+      "color": "b5e2e2",
+      "description": "",
+      "id": "MDU6TGFiZWw2NjkxNjM1MTk=",
+      "name": "documentation"
+    },
+    {
+      "color": "0f45aa",
+      "description": "Topotests, make check, etc",
+      "id": "MDU6TGFiZWwxMTgzMjc1MzYx",
+      "name": "tests"
+    },
+    {
+      "color": "d8d63c",
+      "description": "",
+      "id": "MDU6TGFiZWwxMjIwODYxNjE1",
+      "name": "rip"
+    },
+    {
+      "color": "ee0701",
+      "description": "",
+      "id": "MDU6TGFiZWwxMzA0NTIzOTM0",
+      "name": "bugfix"
+    },
+    {
+      "color": "ededed",
+      "description": "",
+      "id": "MDU6TGFiZWwxMzUwNDA1MTIy",
+      "name": "yang"
+    },
+    {
+      "color": "ededed",
+      "description": "",
+      "id": "LA_kwDOBJDQj874kyPA",
+      "name": "master"
+    },
+    {
+      "color": "ededed",
+      "description": "",
+      "id": "LA_kwDOBJDQj88AAAABISaDbQ",
+      "name": "size/L"
+    }
+  ],
+  "number": 21008,
+  "title": "ripd,yang: new RIP enableament configuration in interface node",
+  "updatedAt": "2026-05-26T19:20:44Z",
+  "url": "https://github.com/FRRouting/frr/pull/21008"
+}
