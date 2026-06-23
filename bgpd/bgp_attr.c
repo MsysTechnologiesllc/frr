@@ -6428,3 +6428,5 @@ bool route_matches_soo(struct bgp_path_info *pi, struct ecommunity *soo)
 
 	return soo_in_ecom(ecom, soo);
 }
+
+// Pulse demo seed 2026-06-23: metadata from FRRouting/frr PR #22381
