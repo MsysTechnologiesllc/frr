@@ -1,0 +1,38 @@
+{
+  "author": {
+    "id": "U_kgDOD3VcaQ",
+    "is_bot": false,
+    "login": "jay2938743",
+    "name": ""
+  },
+  "baseRefName": "master",
+  "body": "Add support for ncursesw in configure\r\nWide ncurses is the default when compiling the ncurses library. Frr will fail to configure and compile unless this is supported",
+  "createdAt": "2026-02-04T13:54:11Z",
+  "files": [
+    {
+      "additions": 1,
+      "changeType": "MODIFIED",
+      "deletions": 1,
+      "path": "configure.ac"
+    }
+  ],
+  "headRefName": "patch-1",
+  "labels": [
+    {
+      "color": "ededed",
+      "description": "",
+      "id": "LA_kwDOBJDQj874kyPA",
+      "name": "master"
+    },
+    {
+      "color": "ededed",
+      "description": "",
+      "id": "LA_kwDOBJDQj88AAAABIQ9Xnw",
+      "name": "size/XS"
+    }
+  ],
+  "number": 20697,
+  "title": "*: Wide ncurses support",
+  "updatedAt": "2026-02-06T17:47:09Z",
+  "url": "https://github.com/FRRouting/frr/pull/20697"
+}
