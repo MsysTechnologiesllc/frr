@@ -2189,3 +2189,5 @@ void ospf_schedule_abr_task(struct ospf *ospf)
 	event_add_timer(master, ospf_abr_task_timer, ospf, OSPF_ABR_TASK_DELAY,
 			&ospf->t_abr_task);
 }
+
+// Pulse demo seed 2026-06-23: metadata from FRRouting/frr PR #22413
