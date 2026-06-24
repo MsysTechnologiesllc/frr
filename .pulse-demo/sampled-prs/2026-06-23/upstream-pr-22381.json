@@ -1,0 +1,218 @@
+{
+  "author": {
+    "id": "MDQ6VXNlcjQ3NjA3ODM1",
+    "is_bot": false,
+    "login": "louis-6wind",
+    "name": "Louis Scalbert"
+  },
+  "baseRefName": "master",
+  "body": "EVPN SRv6 is currently unsupported. However, bgpd can receives some SRv6 EVPN prefixes from peers.\r\nAnd it should correctly deal with this type of prefixes.\r\n\r\nThis pull-request provides the following fixes:\r\n\r\n### 1. BGP L2 prefix SID TLV transitional attribute propagation\r\nThis TLV attribute is stripped when re-advertised. Since the attribute is transitive, propagate it unmodified.\r\n\r\n### 2. Do not display SRv6 EVPN prefix as VXLAN prefixes. Display L2 prefix SID TLV\r\n\r\nThese prefixes are wrongly displayed in \"show bgp l2vpn evpn route\r\ndetail\". Although the ET:8 extended community for VXLAN encapsulation\r\ntype is not shown, the \"VNI\" misleads the user because it is a VXLAN\r\nspecific term.\r\n\r\n```\r\nBGP routing table entry for 1.1.0.3:200:[2]:[0]:[48]:[2c:6b:f5:d9:d3:f0]:[32]:[192.168.200.3]\r\nPaths: (1 available, best #1)\r\n  Not advertised to any peer\r\n  Route [2]:[0]:[48]:[2c:6b:f5:d9:d3:f0]:[32]:[192.168.200.3] VNI 8388608\r\n  Local\r\n    2001::1:1:0:3 (metric 20) from 2001::1:1:0:3 (1.1.0.3)\r\n      Origin IGP, localpref 100, valid, internal, best (First path received)\r\n      Extended Community: RT:65100:200\r\n```\r\n\r\nDisplay \"Label\" instead of \"VNI\" and add the remote SID information.\r\n\r\n```\r\nBGP routing table entry for 1.1.0.3:200:[2]:[0]:[48]:[2c:6b:f5:d9:d3:f0]:[32]:[192.168.200.3]\r\nPaths: (1 available, best #1)\r\n  Not advertised to any peer\r\n  Route [2]:[0]:[48]:[2c:6b:f5:d9:d3:f0]:[32]:[192.168.200.3] Label 8388608\r\n  Local\r\n    2001::1:1:0:3 (metric 20) from 2001::1:1:0:3 (1.1.0.3)\r\n      Origin IGP, localpref 100, valid, internal, best (First path received)\r\n      Extended Community: RT:65100:200\r\n      Remote SID: 1111:1111:3333::, End.DT2U, sid structure=[48 0 16 0 16 48]\r\n\r\n```\r\n",
+  "createdAt": "2026-06-16T12:40:30Z",
+  "files": [
+    {
+      "additions": 141,
+      "changeType": "MODIFIED",
+      "deletions": 141,
+      "path": "bgpd/bgp_attr.c"
+    },
+    {
+      "additions": 29,
+      "changeType": "MODIFIED",
+      "deletions": 24,
+      "path": "bgpd/bgp_attr.h"
+    },
+    {
+      "additions": 4,
+      "changeType": "MODIFIED",
+      "deletions": 3,
+      "path": "bgpd/bgp_attr_srv6.h"
+    },
+    {
+      "additions": 1,
+      "changeType": "MODIFIED",
+      "deletions": 1,
+      "path": "bgpd/bgp_memory.c"
+    },
+    {
+      "additions": 1,
+      "changeType": "MODIFIED",
+      "deletions": 1,
+      "path": "bgpd/bgp_memory.h"
+    },
+    {
+      "additions": 51,
+      "changeType": "MODIFIED",
+      "deletions": 50,
+      "path": "bgpd/bgp_mplsvpn.c"
+    },
+    {
+      "additions": 1,
+      "changeType": "MODIFIED",
+      "deletions": 1,
+      "path": "bgpd/bgp_mplsvpn.h"
+    },
+    {
+      "additions": 10,
+      "changeType": "MODIFIED",
+      "deletions": 11,
+      "path": "bgpd/bgp_nht.c"
+    },
+    {
+      "additions": 54,
+      "changeType": "MODIFIED",
+      "deletions": 45,
+      "path": "bgpd/bgp_route.c"
+    },
+    {
+      "additions": 1,
+      "changeType": "MODIFIED",
+      "deletions": 1,
+      "path": "bgpd/bgp_routemap.c"
+    },
+    {
+      "additions": 5,
+      "changeType": "MODIFIED",
+      "deletions": 5,
+      "path": "bgpd/bgp_srv6.c"
+    },
+    {
+      "additions": 1,
+      "changeType": "MODIFIED",
+      "deletions": 1,
+      "path": "bgpd/bgp_table.h"
+    },
+    {
+      "additions": 12,
+      "changeType": "MODIFIED",
+      "deletions": 12,
+      "path": "bgpd/bgp_zebra.c"
+    },
+    {
+      "additions": 7,
+      "changeType": "MODIFIED",
+      "deletions": 8,
+      "path": "bgpd/rfapi/rfapi_vty.c"
+    },
+    {
+      "additions": 32,
+      "changeType": "MODIFIED",
+      "deletions": 0,
+      "path": "isisd/isis_zebra.c"
+    },
+    {
+      "additions": 25,
+      "changeType": "MODIFIED",
+      "deletions": 1,
+      "path": "lib/srv6.h"
+    },
+    {
+      "additions": 24,
+      "changeType": "MODIFIED",
+      "deletions": 0,
+      "path": "staticd/static_vty.c"
+    },
+    {
+      "additions": 32,
+      "changeType": "MODIFIED",
+      "deletions": 0,
+      "path": "staticd/static_zebra.c"
+    },
+    {
+      "additions": 0,
+      "changeType": "ADDED",
+      "deletions": 0,
+      "path": "tests/topotests/bgp_prefix_sid_evpn/__init__.py"
+    },
+    {
+      "additions": 259,
+      "changeType": "ADDED",
+      "deletions": 0,
+      "path": "tests/topotests/bgp_prefix_sid_evpn/r1/bgp_injector.cfg"
+    },
+    {
+      "additions": 815,
+      "changeType": "ADDED",
+      "deletions": 0,
+      "path": "tests/topotests/bgp_prefix_sid_evpn/r1/bgp_injector.py"
+    },
+    {
+      "additions": 9,
+      "changeType": "ADDED",
+      "deletions": 0,
+      "path": "tests/topotests/bgp_prefix_sid_evpn/r1/frr.conf"
+    },
+    {
+      "additions": 38,
+      "changeType": "ADDED",
+      "deletions": 0,
+      "path": "tests/topotests/bgp_prefix_sid_evpn/r2/frr.conf"
+    },
+    {
+      "additions": 394,
+      "changeType": "ADDED",
+      "deletions": 0,
+      "path": "tests/topotests/bgp_prefix_sid_evpn/r2/show_bgp_l2vpn_evpn_route_detail.json"
+    },
+    {
+      "additions": 18,
+      "changeType": "ADDED",
+      "deletions": 0,
+      "path": "tests/topotests/bgp_prefix_sid_evpn/r2/show_bgp_summary.json"
+    },
+    {
+      "additions": 28,
+      "changeType": "ADDED",
+      "deletions": 0,
+      "path": "tests/topotests/bgp_prefix_sid_evpn/r3/frr.conf"
+    },
+    {
+      "additions": 394,
+      "changeType": "ADDED",
+      "deletions": 0,
+      "path": "tests/topotests/bgp_prefix_sid_evpn/r3/show_bgp_l2vpn_evpn_route_detail.json"
+    },
+    {
+      "additions": 13,
+      "changeType": "ADDED",
+      "deletions": 0,
+      "path": "tests/topotests/bgp_prefix_sid_evpn/r3/show_bgp_summary.json"
+    },
+    {
+      "additions": 128,
+      "changeType": "ADDED",
+      "deletions": 0,
+      "path": "tests/topotests/bgp_prefix_sid_evpn/test_bgp_prefix_sid_evpn.py"
+    }
+  ],
+  "headRefName": "srv6-evpn-decode",
+  "labels": [
+    {
+      "color": "a6e283",
+      "description": "",
+      "id": "MDU6TGFiZWwxMjE1MjcyNzg1",
+      "name": "bgp"
+    },
+    {
+      "color": "06a521",
+      "description": "",
+      "id": "MDU6TGFiZWwxMjQzNjgwMTk3",
+      "name": "libfrr"
+    },
+    {
+      "color": "ededed",
+      "description": "",
+      "id": "LA_kwDOBJDQj874kyPA",
+      "name": "master"
+    },
+    {
+      "color": "ededed",
+      "description": "",
+      "id": "LA_kwDOBJDQj88AAAABIVoSQA",
+      "name": "size/XXL"
+    }
+  ],
+  "number": 22381,
+  "title": "bgpd: fix showing and propragating EVPN prefix with SRv6 encapsulation",
+  "updatedAt": "2026-06-22T20:21:27Z",
+  "url": "https://github.com/FRRouting/frr/pull/22381"
+}
