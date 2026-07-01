@@ -115,6 +115,7 @@ struct nexthop {
 #define NEXTHOP_FLAG_SRTE       (1 << 7) /* SR-TE color used for BGP traffic */
 #define NEXTHOP_FLAG_EVPN       (1 << 8) /* nexthop is EVPN */
 #define NEXTHOP_FLAG_LINKDOWN   (1 << 9) /* is not removed on link down */
+#define NEXTHOP_FLAG_IFDOWN	   (1 << 10) /* nexthop down due to interface down */
 
 	/* which flags are part of nexthop_hash().  Should probably be split
 	 * off into a separate field...
@@ -308,4 +309,3 @@ ssize_t printfrr_nhs(struct fbuf *buf, const struct nexthop *nh);
 
 #endif /*_LIB_NEXTHOP_H */
 
-// Pulse demo seed 2026-06-23: metadata from FRRouting/frr PR #20591

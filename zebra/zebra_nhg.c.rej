@@ -1,0 +1,27 @@
+diff a/zebra/zebra_nhg.c b/zebra/zebra_nhg.c	(rejected hunks)
+@@ -4087,12 +4097,21 @@ void zebra_interface_nhg_reinstall(struct interface *ifp)
+ 		if (CHECK_FLAG(rb_node_dep->nhe->flags, NEXTHOP_GROUP_INITIAL_DELAY_INSTALL))
+ 			continue;
+ 		/*
+-		 * The nexthop associated with this was set as !ACTIVE
+-		 * so we need to turn it back to active when we get to
+-		 * this point again
++		 * Only restore ACTIVE flag if IFDOWN was set (meaning it was
++		 * active before interface went down). This preserves nexthops
++		 * that were inactive for other reasons (e.g., loop avoidance).
++		 * Must iterate all nexthops - ECMP groups may have multiple.
+ 		 */
+-		SET_FLAG(rb_node_dep->nhe->nhg.nexthop->flags, NEXTHOP_FLAG_ACTIVE);
++		for (ALL_NEXTHOPS(rb_node_dep->nhe->nhg, nh)) {
++			if (nh->ifindex == ifp->ifindex &&
++			    CHECK_FLAG(nh->flags, NEXTHOP_FLAG_IFDOWN)) {
++				SET_FLAG(nh->flags, NEXTHOP_FLAG_ACTIVE);
++				UNSET_FLAG(nh->flags, NEXTHOP_FLAG_IFDOWN);
++			}
++		}
+ 		nh = rb_node_dep->nhe->nhg.nexthop;
++		if (!nh)
++			continue;
+ 
+ 		if (zebra_nhg_set_valid_if_active(rb_node_dep->nhe)) {
+ 			frrtrace(3, frr_zebra, zebra_interface_nhg_reinstall, ifp,
